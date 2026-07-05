@@ -1,0 +1,586 @@
+{
+  "Afghanistan": {
+    "gdp": 2202,
+    "topo": "Afghanistan"
+  },
+  "Albania": {
+    "gdp": 26702,
+    "topo": "Albania"
+  },
+  "Algeria": {
+    "gdp": 17621,
+    "topo": "Algeria"
+  },
+  "Antigua-Barbuda": {
+    "gdp": 33386,
+    "topo": "Antigua and Barb."
+  },
+  "Argentina": {
+    "gdp": 30431,
+    "topo": "Argentina"
+  },
+  "Armenia": {
+    "gdp": 22823,
+    "topo": "Armenia"
+  },
+  "Australia": {
+    "gdp": 72111,
+    "topo": "Australia"
+  },
+  "Austria": {
+    "gdp": 73911,
+    "topo": "Austria"
+  },
+  "Azerbaijan": {
+    "gdp": 25089,
+    "topo": "Azerbaijan"
+  },
+  "Bahamas": {
+    "gdp": 41198,
+    "topo": "Bahamas"
+  },
+  "Bangladesh": {
+    "gdp": 9647,
+    "topo": "Bangladesh"
+  },
+  "Barbados": {
+    "gdp": 24823,
+    "topo": null
+  },
+  "Belgium": {
+    "gdp": 73514,
+    "topo": "Belgium"
+  },
+  "Belize/British Honduras": {
+    "gdp": 14347,
+    "topo": "Belize"
+  },
+  "Bermuda": {
+    "gdp": 124253,
+    "topo": "Bermuda"
+  },
+  "Bhutan": {
+    "gdp": 16215,
+    "topo": "Bhutan"
+  },
+  "Bolivia": {
+    "gdp": 12878,
+    "topo": "Bolivia"
+  },
+  "Bosnia": {
+    "gdp": 25043,
+    "topo": "Bosnia and Herz."
+  },
+  "Brazil": {
+    "gdp": 22338,
+    "topo": "Brazil"
+  },
+  "Bulgaria": {
+    "gdp": 41969,
+    "topo": "Bulgaria"
+  },
+  "Burma (Myanmar)": {
+    "gdp": 5997,
+    "topo": "Myanmar"
+  },
+  "Cambodia (Kampuchea)": {
+    "gdp": 7967,
+    "topo": "Cambodia"
+  },
+  "Cameroon": {
+    "gdp": 5589,
+    "topo": "Cameroon"
+  },
+  "Canada": {
+    "gdp": 64610,
+    "topo": "Canada"
+  },
+  "Cape Verde": {
+    "gdp": 11195,
+    "topo": null
+  },
+  "Chile": {
+    "gdp": 36181,
+    "topo": "Chile"
+  },
+  "China": {
+    "gdp": 27105,
+    "topo": "China"
+  },
+  "Colombia": {
+    "gdp": 22349,
+    "topo": "Colombia"
+  },
+  "Congo": {
+    "gdp": 7026,
+    "topo": "Congo"
+  },
+  "Costa Rica": {
+    "gdp": 31107,
+    "topo": "Costa Rica"
+  },
+  "Croatia": {
+    "gdp": 49551,
+    "topo": "Croatia"
+  },
+  "Cuba": {
+    "gdp": 9500,
+    "topo": null
+  },
+  "Czech Republic": {
+    "gdp": 57285,
+    "topo": "Czechia"
+  },
+  "Czechoslovakia": {
+    "gdp": null,
+    "topo": null
+  },
+  "Denmark": {
+    "gdp": 81878,
+    "topo": "Denmark"
+  },
+  "Dominica": {
+    "gdp": 21301,
+    "topo": null
+  },
+  "Dominican Republic": {
+    "gdp": 27542,
+    "topo": "Dominican Rep."
+  },
+  "Ecuador": {
+    "gdp": 15840,
+    "topo": "Ecuador"
+  },
+  "Egypt/United Arab Rep.": {
+    "gdp": 19094,
+    "topo": "Egypt"
+  },
+  "El Salvador": {
+    "gdp": 13264,
+    "topo": "El Salvador"
+  },
+  "England": {
+    "gdp": 62009,
+    "topo": "United Kingdom"
+  },
+  "Eritrea": {
+    "gdp": 1742,
+    "topo": "Eritrea"
+  },
+  "Ethiopia": {
+    "gdp": 3288,
+    "topo": "Ethiopia"
+  },
+  "Fiji": {
+    "gdp": 15450,
+    "topo": "Fiji"
+  },
+  "Finland": {
+    "gdp": 65378,
+    "topo": "Finland"
+  },
+  "France": {
+    "gdp": 62557,
+    "topo": "France"
+  },
+  "Gambia": {
+    "gdp": 3476,
+    "topo": "Gambia"
+  },
+  "Germany": {
+    "gdp": 73552,
+    "topo": "Germany"
+  },
+  "Ghana": {
+    "gdp": 8020,
+    "topo": "Ghana"
+  },
+  "Greece": {
+    "gdp": 44327,
+    "topo": "Greece"
+  },
+  "Grenada": {
+    "gdp": 20178,
+    "topo": null
+  },
+  "Guatemala": {
+    "gdp": 14369,
+    "topo": "Guatemala"
+  },
+  "Guinea": {
+    "gdp": 4565,
+    "topo": "Guinea"
+  },
+  "Guyana/British Guiana": {
+    "gdp": 80155,
+    "topo": "Guyana"
+  },
+  "Haiti": {
+    "gdp": 3194,
+    "topo": "Haiti"
+  },
+  "Honduras": {
+    "gdp": 7486,
+    "topo": "Honduras"
+  },
+  "Hong Kong": {
+    "gdp": 75196,
+    "topo": null
+  },
+  "Hungary": {
+    "gdp": 48552,
+    "topo": "Hungary"
+  },
+  "Iceland": {
+    "gdp": 84257,
+    "topo": "Iceland"
+  },
+  "India": {
+    "gdp": 11160,
+    "topo": "India"
+  },
+  "Indonesia": {
+    "gdp": 16448,
+    "topo": "Indonesia"
+  },
+  "Iran": {
+    "gdp": 19874,
+    "topo": "Iran"
+  },
+  "Iraq": {
+    "gdp": 14464,
+    "topo": "Iraq"
+  },
+  "Ireland": {
+    "gdp": 133437,
+    "topo": "Ireland"
+  },
+  "Israel/Palestine": {
+    "gdp": 47339,
+    "topo": "Israel"
+  },
+  "Italy": {
+    "gdp": 62014,
+    "topo": "Italy"
+  },
+  "Ivory Coast": {
+    "gdp": 7669,
+    "topo": "Cote d'Ivoire"
+  },
+  "Jamaica": {
+    "gdp": 12890,
+    "topo": "Jamaica"
+  },
+  "Japan": {
+    "gdp": 52039,
+    "topo": "Japan"
+  },
+  "Jordan": {
+    "gdp": 10821,
+    "topo": "Jordan"
+  },
+  "Kazakhstan": {
+    "gdp": 40891,
+    "topo": "Kazakhstan"
+  },
+  "Kenya": {
+    "gdp": 6644,
+    "topo": "Kenya"
+  },
+  "Kirghizia": {
+    "gdp": 8012,
+    "topo": "Kyrgyzstan"
+  },
+  "Korea": {
+    "gdp": 61051,
+    "topo": "South Korea"
+  },
+  "Kosovo": {
+    "gdp": 17864,
+    "topo": "Kosovo"
+  },
+  "Kuwait": {
+    "gdp": 52444,
+    "topo": "Kuwait"
+  },
+  "Laos": {
+    "gdp": 9776,
+    "topo": "Laos"
+  },
+  "Latvia": {
+    "gdp": 43394,
+    "topo": "Latvia"
+  },
+  "Lebanon": {
+    "gdp": 12575,
+    "topo": "Lebanon"
+  },
+  "Liberia": {
+    "gdp": 1871,
+    "topo": "Liberia"
+  },
+  "Libya": {
+    "gdp": 14304,
+    "topo": "Libya"
+  },
+  "Lithuania": {
+    "gdp": 55286,
+    "topo": "Lithuania"
+  },
+  "Macedonia": {
+    "gdp": 26995,
+    "topo": "North Macedonia"
+  },
+  "Malaysia": {
+    "gdp": 38779,
+    "topo": "Malaysia"
+  },
+  "Mexico": {
+    "gdp": 26185,
+    "topo": "Mexico"
+  },
+  "Moldavia": {
+    "gdp": 18615,
+    "topo": "Moldova"
+  },
+  "Mongolia": {
+    "gdp": 19145,
+    "topo": "Mongolia"
+  },
+  "Montenegro": {
+    "gdp": 34063,
+    "topo": "Montenegro"
+  },
+  "Morocco": {
+    "gdp": 10415,
+    "topo": "Morocco"
+  },
+  "Nepal": {
+    "gdp": 5737,
+    "topo": "Nepal"
+  },
+  "Netherlands": {
+    "gdp": 86174,
+    "topo": "Netherlands"
+  },
+  "New Zealand": {
+    "gdp": 55551,
+    "topo": "New Zealand"
+  },
+  "Nicaragua": {
+    "gdp": 8709,
+    "topo": "Nicaragua"
+  },
+  "Nigeria": {
+    "gdp": 9087,
+    "topo": "Nigeria"
+  },
+  "Northern Ireland": {
+    "gdp": 49000,
+    "topo": "United Kingdom"
+  },
+  "Norway": {
+    "gdp": 102038,
+    "topo": "Norway"
+  },
+  "Other USSR/Russia": {
+    "gdp": 47362,
+    "topo": "Russia"
+  },
+  "Pakistan": {
+    "gdp": 6252,
+    "topo": "Pakistan"
+  },
+  "Panama": {
+    "gdp": 41369,
+    "topo": "Panama"
+  },
+  "Paraguay": {
+    "gdp": 18524,
+    "topo": "Paraguay"
+  },
+  "Peru": {
+    "gdp": 17802,
+    "topo": "Peru"
+  },
+  "Philippines": {
+    "gdp": 11794,
+    "topo": "Philippines"
+  },
+  "Poland": {
+    "gdp": 51263,
+    "topo": "Poland"
+  },
+  "Portugal": {
+    "gdp": 51680,
+    "topo": "Portugal"
+  },
+  "Puerto Rico": {
+    "gdp": 39000,
+    "topo": null
+  },
+  "Republic of Georgia": {
+    "gdp": 28285,
+    "topo": "Georgia"
+  },
+  "Romania": {
+    "gdp": 49077,
+    "topo": "Romania"
+  },
+  "Rwanda": {
+    "gdp": 3711,
+    "topo": "Rwanda"
+  },
+  "Saudi Arabia": {
+    "gdp": 71375,
+    "topo": "Saudi Arabia"
+  },
+  "Scotland": {
+    "gdp": 62009,
+    "topo": "United Kingdom"
+  },
+  "Senegal": {
+    "gdp": 5071,
+    "topo": "Senegal"
+  },
+  "Serbia": {
+    "gdp": 32832,
+    "topo": "Serbia"
+  },
+  "Sierra Leone": {
+    "gdp": 3522,
+    "topo": "Sierra Leone"
+  },
+  "Singapore": {
+    "gdp": 150689,
+    "topo": null
+  },
+  "Slovakia": {
+    "gdp": 48132,
+    "topo": "Slovakia"
+  },
+  "Somalia": {
+    "gdp": 1500,
+    "topo": "Somalia"
+  },
+  "South Africa (Union of)": {
+    "gdp": 15456,
+    "topo": "South Africa"
+  },
+  "South Sudan": {
+    "gdp": 1155,
+    "topo": "S. Sudan"
+  },
+  "Spain": {
+    "gdp": 57965,
+    "topo": "Spain"
+  },
+  "Sri Lanka (Ceylon)": {
+    "gdp": 15633,
+    "topo": "Sri Lanka"
+  },
+  "St. Kitts-Nevis": {
+    "gdp": 30000,
+    "topo": null
+  },
+  "St. Lucia": {
+    "gdp": 27567,
+    "topo": null
+  },
+  "St. Vincent": {
+    "gdp": 16000,
+    "topo": null
+  },
+  "Sudan": {
+    "gdp": 2116,
+    "topo": "Sudan"
+  },
+  "Sweden": {
+    "gdp": 71845,
+    "topo": "Sweden"
+  },
+  "Switzerland": {
+    "gdp": 96498,
+    "topo": "Switzerland"
+  },
+  "Syria": {
+    "gdp": 4772,
+    "topo": "Syria"
+  },
+  "Taiwan": {
+    "gdp": 76000,
+    "topo": null
+  },
+  "Tanzania": {
+    "gdp": 4221,
+    "topo": "Tanzania"
+  },
+  "Thailand": {
+    "gdp": 24712,
+    "topo": "Thailand"
+  },
+  "Togo": {
+    "gdp": 3365,
+    "topo": "Togo"
+  },
+  "Trinidad and Tobago": {
+    "gdp": 36329,
+    "topo": "Trinidad and Tobago"
+  },
+  "Turkey": {
+    "gdp": 45639,
+    "topo": "Turkey"
+  },
+  "Uganda": {
+    "gdp": 3273,
+    "topo": "Uganda"
+  },
+  "Ukraine": {
+    "gdp": 18549,
+    "topo": "Ukraine"
+  },
+  "United Arab Emirates": {
+    "gdp": 79229,
+    "topo": null
+  },
+  "United Kingdom, ns": {
+    "gdp": 62009,
+    "topo": "United Kingdom"
+  },
+  "Uruguay": {
+    "gdp": 36418,
+    "topo": "Uruguay"
+  },
+  "Uzbekistan": {
+    "gdp": 11879,
+    "topo": "Uzbekistan"
+  },
+  "Venezuela": {
+    "gdp": 7000,
+    "topo": "Venezuela"
+  },
+  "Vietnam": {
+    "gdp": 16386,
+    "topo": "Vietnam"
+  },
+  "Yemen Arab Republic (North)": {
+    "gdp": 3164,
+    "topo": "Yemen"
+  },
+  "Yugoslavia": {
+    "gdp": null,
+    "topo": null
+  },
+  "Zaire": {
+    "gdp": 1821,
+    "topo": "Dem. Rep. Congo"
+  },
+  "Zambia": {
+    "gdp": 4215,
+    "topo": "Zambia"
+  },
+  "Zimbabwe": {
+    "gdp": 5928,
+    "topo": "Zimbabwe"
+  }
+}

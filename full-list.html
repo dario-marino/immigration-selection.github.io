@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete data table &middot; Immigrant Selection Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFE9DC; --paper-2:#E4DCC8; --ink:#20242B; --ink-soft:#4A4E55;
+    --line:#CFC6AE; --brass:#93711F; --muted:#7A7568;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; }
+  header.masthead{
+    border-bottom:2px solid var(--ink); padding:28px 32px 18px;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px;
+  }
+  header.masthead .title{ font-family:'Source Serif 4',serif; font-weight:700; font-size:clamp(24px,3.4vw,34px); }
+  header.masthead .kicker{ font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:var(--brass); margin-bottom:6px; }
+  header.masthead nav a{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; }
+  header.masthead nav a:hover{ color:var(--brass); border-color:var(--brass); }
+  main{ max-width:1280px; margin:0 auto; padding:24px 32px 80px; }
+  .toolbar{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+  .toolbar input[type=text]{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; padding:9px 12px;
+    border:1.5px solid var(--ink); background:#F7F3E9; min-width:240px; flex:1;
+  }
+  .toolbar label{ display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink-soft); }
+  .count{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); margin-bottom:10px; }
+  table{ width:100%; border-collapse:collapse; font-size:13px; background:#F7F3E9; border:1px solid var(--line); }
+  thead th{
+    position:sticky; top:0; background:var(--ink); color:var(--paper);
+    font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.04em;
+    padding:9px 10px; text-align:left; cursor:pointer; white-space:nowrap; user-select:none;
+  }
+  thead th:hover{ background:var(--brass); }
+  thead th.sorted::after{ content:" \25BE"; }
+  thead th.sorted.asc::after{ content:" \25B4"; }
+  tbody td{ padding:6px 10px; border-bottom:1px solid var(--line); font-family:'IBM Plex Mono',monospace; }
+  tbody tr:nth-child(even){ background:var(--paper-2); }
+  tbody tr.unreliable{ color:var(--muted); font-style:italic; }
+  .scroll{ max-height:70vh; overflow:auto; border:1.5px solid var(--ink); }
+  thead th{ border-bottom:1.5px solid var(--ink); }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <div class="kicker">Manhattan Institute &middot; Immigration Data Explorer</div>
+    <div class="title">Complete data table</div>
+  </div>
+  <nav><a href="index.html">&larr; Back to the map</a></nav>
+</header>
+<main>
+  <h2 class="sr-only">Full table of every sex, country of birth, education, and age-at-arrival bucket</h2>
+  <div class="toolbar">
+    <input type="text" id="filter" placeholder="Filter by country, sex, or education&hellip;">
+    <label><input type="checkbox" id="reliable-only"> Reliable groups only (n &ge; 30)</label>
+  </div>
+  <div class="count" id="count"></div>
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th data-key="country">Country</th>
+          <th data-key="sex_label">Sex</th>
+          <th data-key="educ_label">Education</th>
+          <th data-key="age_bucket">Age at arrival</th>
+          <th data-key="n">n</th>
+          <th data-key="weighted_population">Est. population</th>
+          <th data-key="mean_income">Mean income</th>
+          <th data-key="institutionalization_per_100k_under60">Institutionalization /100k</th>
+          <th data-key="gdp">Country GDP p.c.</th>
+          <th data-key="reliable">Reliable</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</main>
+<script>
+let DATA = [];
+let sortKey = "country", sortAsc = true;
+
+function fmt(v){ return v===null || v===undefined ? "\u2014" : v; }
+function fmtMoney(v){ return v===null||v===undefined ? "\u2014" : "$"+Math.round(v).toLocaleString(); }
+
+function render(){
+  const q = document.getElementById("filter").value.trim().toLowerCase();
+  const reliableOnly = document.getElementById("reliable-only").checked;
+  let rows = DATA.filter(r=>{
+    if(reliableOnly && !r.reliable) return false;
+    if(!q) return true;
+    return (r.country+" "+r.sex_label+" "+r.educ_label).toLowerCase().includes(q);
+  });
+  rows.sort((a,b)=>{
+    let av = a[sortKey], bv = b[sortKey];
+    if(av === null || av === undefined) av = sortAsc ? Infinity : -Infinity;
+    if(bv === null || bv === undefined) bv = sortAsc ? Infinity : -Infinity;
+    if(typeof av === "string") return sortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+    return sortAsc ? av-bv : bv-av;
+  });
+  document.getElementById("count").textContent = rows.length.toLocaleString() + " of " + DATA.length.toLocaleString() + " groups shown";
+  const tbody = document.getElementById("tbody");
+  const frag = document.createDocumentFragment();
+  rows.forEach(r=>{
+    const tr = document.createElement("tr");
+    if(!r.reliable) tr.className = "unreliable";
+    tr.innerHTML = `<td>${r.country}</td><td>${r.sex_label}</td><td>${r.educ_label}</td><td>${r.age_bucket}</td>
+      <td>${r.n}</td><td>${r.weighted_population.toLocaleString()}</td>
+      <td>${fmtMoney(r.mean_income)}</td><td>${fmt(r.institutionalization_per_100k_under60)}</td>
+      <td>${fmtMoney(r.gdp)}</td><td>${r.reliable ? "yes" : "no"}</td>`;
+    frag.appendChild(tr);
+  });
+  tbody.innerHTML = "";
+  tbody.appendChild(frag);
+
+  document.querySelectorAll("thead th").forEach(th=>{
+    th.classList.toggle("sorted", th.dataset.key===sortKey);
+    th.classList.toggle("asc", th.dataset.key===sortKey && sortAsc);
+  });
+}
+
+document.querySelectorAll("thead th").forEach(th=>{
+  th.addEventListener("click", ()=>{
+    const key = th.dataset.key;
+    if(sortKey === key) sortAsc = !sortAsc;
+    else { sortKey = key; sortAsc = true; }
+    render();
+  });
+});
+document.getElementById("filter").addEventListener("input", render);
+document.getElementById("reliable-only").addEventListener("change", render);
+
+fetch("data/full_list.json").then(r=>r.json()).then(data=>{
+  DATA = data;
+  render();
+}).catch(err=>{
+  document.getElementById("tbody").innerHTML = `<tr><td colspan="10">Could not load data: ${err}</td></tr>`;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immigrant Selection Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<style>
+  :root{
+    --paper:#EFE9DC;
+    --paper-2:#E4DCC8;
+    --ink:#20242B;
+    --ink-soft:#4A4E55;
+    --line:#CFC6AE;
+    --brass:#93711F;
+    --brass-dim:#B79A55;
+    --good:#2F6F4F;
+    --good-dim:#DCE8DE;
+    --bad:#9C3B3B;
+    --muted:#7A7568;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  header.masthead{
+    border-bottom:2px solid var(--ink);
+    padding:28px 32px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  header.masthead .title{
+    font-family:'Source Serif 4',serif;
+    font-weight:700;
+    font-size:clamp(28px,4vw,42px);
+    letter-spacing:-0.01em;
+    line-height:1.05;
+  }
+  header.masthead .kicker{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--brass);
+    margin-bottom:6px;
+  }
+  header.masthead nav a{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+  }
+  header.masthead nav a:hover{ color:var(--brass); border-color:var(--brass); }
+
+  main{ max-width:1180px; margin:0 auto; padding:28px 32px 80px; }
+
+  .modes{
+    display:flex;
+    gap:0;
+    border:1.5px solid var(--ink);
+    width:fit-content;
+    margin-bottom:22px;
+  }
+  .modes button{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    background:transparent;
+    border:none;
+    padding:11px 18px;
+    cursor:pointer;
+    color:var(--ink-soft);
+    border-right:1px solid var(--ink);
+  }
+  .modes button:last-child{ border-right:none; }
+  .modes button.active{ background:var(--ink); color:var(--paper); }
+  .modes button:not(.active):hover{ background:var(--paper-2); color:var(--ink); }
+
+  .mode-desc{ font-size:14px; color:var(--ink-soft); max-width:640px; margin-bottom:20px; line-height:1.5; }
+  .mode-desc b{ color:var(--ink); }
+
+  .controls{
+    display:flex; flex-direction:column; gap:14px;
+    padding:16px 20px; background:var(--paper-2);
+    border:1px solid var(--line); margin-bottom:20px;
+  }
+  .control-row{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .control-row label{ font-size:12.5px; color:var(--ink-soft); width:230px; flex-shrink:0; }
+  .control-row input[type=range]{ flex:1; min-width:180px; accent-color:var(--brass); }
+  .control-row .val{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500;
+    min-width:92px; text-align:right;
+  }
+
+  .layout{ display:flex; gap:22px; align-items:flex-start; flex-wrap:wrap; }
+  #map-wrap{ flex:1 1 640px; min-width:320px; }
+  #map{ width:100%; border:1px solid var(--line); background:#E9E2D0; }
+  #map path.country{ cursor:pointer; stroke:rgba(32,36,43,0.35); stroke-width:0.5px; }
+  #map path.country:hover{ stroke:var(--ink); stroke-width:1.2px; }
+  #map path.country.excluded{ fill:#D8D2C2; }
+  #map path.country.no-data{ fill:#E9E2D0; }
+
+  .legend{ display:flex; gap:18px; font-size:12px; color:var(--ink-soft); margin-top:10px; flex-wrap:wrap; }
+  .legend span{ display:inline-flex; align-items:center; gap:5px; }
+  .swatch{ width:11px; height:11px; display:inline-block; border:1px solid rgba(0,0,0,0.15); }
+
+  #panel{
+    flex:0 0 300px; min-width:280px;
+    border:1.5px solid var(--ink);
+    background:#F7F3E9;
+    padding:18px 18px 20px;
+    min-height:420px;
+  }
+  #panel h3{
+    font-family:'Source Serif 4',serif; font-size:20px; margin:0 0 4px;
+  }
+  #panel .sub{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:14px; }
+  #panel .placeholder{ font-size:13px; color:var(--muted); line-height:1.6; }
+  #panel .stat{ font-family:'IBM Plex Mono',monospace; font-size:13px; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid var(--line); }
+  #panel .manifest{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; line-height:1.9; max-height:340px; overflow-y:auto; }
+  #panel .manifest .row{ display:flex; justify-content:space-between; gap:8px; padding:3px 0; border-bottom:1px dotted var(--line); }
+  #panel .manifest .row.qualify{ color:var(--good); }
+  #panel .manifest .row.no-qualify{ color:var(--muted); opacity:0.55; }
+  #panel .manifest .label{ flex:1; }
+  #panel .manifest .num{ flex-shrink:0; }
+  #panel .unreliable-note{ font-size:10.5px; color:var(--muted); margin-top:10px; font-style:italic; }
+
+  footer{
+    max-width:1180px; margin:0 auto; padding:0 32px 60px;
+    font-size:12px; color:var(--muted); line-height:1.6;
+  }
+  footer a{ color:var(--brass); }
+  .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div>
+    <div class="kicker">Manhattan Institute &middot; Immigration Data Explorer</div>
+    <div class="title">Who would qualify?</div>
+  </div>
+  <nav><a href="full-list.html">View the complete data table &rarr;</a></nav>
+</header>
+
+<main>
+  <h2 class="sr-only">Immigrant selection map explorer</h2>
+
+  <div class="modes" role="tablist">
+    <button data-mode="gdp" class="active">GDP per capita</button>
+    <button data-mode="income">Income generated</button>
+    <button data-mode="crime">Low incarceration</button>
+  </div>
+
+  <div class="mode-desc" id="mode-desc"></div>
+
+  <div class="controls" id="controls"></div>
+
+  <div class="layout">
+    <div id="map-wrap">
+      <div id="map"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div id="panel">
+      <h3 id="panel-title">Click a country</h3>
+      <div class="sub" id="panel-sub"></div>
+      <div id="panel-body" class="placeholder">Select a mode above, set a threshold, then click any country on the map to see exactly which sex &times; education &times; age-at-arrival groups from that country clear the bar.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Sex &times; education &times; age-at-arrival groups computed from IPUMS USA / American Community Survey microdata (person-weighted). Income is mean total personal income (IPUMS <code>INCTOT</code>). Incarceration is the share of each group's ACS group-quarters population recorded in a correctional facility, per 100,000 &mdash; a standard proxy used in the immigration-crime literature since no U.S. dataset records crime by nativity directly. Groups built from fewer than 30 sampled records are marked unreliable and never count toward a country's qualifying total. GDP per capita is PPP, most recent year available; countries below a set threshold are shown in the excluded color regardless of group counts. See the <a href="full-list.html">complete table</a> for every group, every country, with reliability flags.
+</footer>
+
+<script>
+const paths = {
+  gdp: "data/country_gdp.json",
+  buckets: "data/country_buckets.json"
+};
+
+let GDP = {}, BUCKETS = {};
+let mode = "gdp";
+let gdpMin = 0;
+let selMin = 20000;   // income threshold ($) or crime threshold (per 100k), meaning depends on mode
+let countrySel = null;
+let byTopoName = {};   // topo feature name -> our country label(s)
+
+const TOTAL_GROUPS = 20; // 2 sex x 5 education x 2 age buckets
+
+function fmtMoney(v){ return "$" + Math.round(v).toLocaleString(); }
+
+function buildControls(){
+  const c = document.getElementById("controls");
+  const desc = document.getElementById("mode-desc");
+  c.innerHTML = "";
+  if(mode === "gdp"){
+    desc.innerHTML = "A plain reference view: pick a minimum <b>country-of-origin GDP per capita</b> and see which countries clear it. No demographic data involved &mdash; this is the blunt, nationality-only version of a selection rule.";
+    c.innerHTML = `
+      <div class="control-row">
+        <label for="gdp-slider">Min. GDP per capita (PPP, $)</label>
+        <input type="range" id="gdp-slider" min="0" max="100000" step="500" value="${gdpMin}">
+        <span class="val" id="gdp-val"></span>
+      </div>`;
+    document.getElementById("gdp-slider").addEventListener("input", e=>{
+      gdpMin = +e.target.value;
+      updateGdpVal(); render();
+    });
+    updateGdpVal();
+  } else if(mode === "income"){
+    desc.innerHTML = "Pick a minimum <b>mean personal income</b>. Countries are shaded by how many of their sex &times; education &times; age-at-arrival groups clear that bar &mdash; darker means more qualifying groups, regardless of what the country as a whole looks like. Click a country to see which groups.";
+    c.innerHTML = `
+      <div class="control-row">
+        <label for="sel-slider">Min. income generated ($)</label>
+        <input type="range" id="sel-slider" min="0" max="120000" step="1000" value="${selMin}">
+        <span class="val" id="sel-val"></span>
+      </div>`;
+    document.getElementById("sel-slider").addEventListener("input", e=>{
+      selMin = +e.target.value; updateSelVal(); render();
+    });
+    if(selMin < 1000) selMin = 20000;
+    updateSelVal();
+  } else {
+    desc.innerHTML = "Pick a maximum <b>institutionalization rate</b> (our incarceration proxy, per 100,000). Countries are shaded by how many groups fall at or below that rate &mdash; darker means more low-incarceration groups represented. Click a country to see which groups.";
+    c.innerHTML = `
+      <div class="control-row">
+        <label for="sel-slider">Max. institutionalization rate (per 100k)</label>
+        <input type="range" id="sel-slider" min="0" max="2000" step="25" value="${selMin>2000?300:selMin}">
+        <span class="val" id="sel-val"></span>
+      </div>`;
+    if(selMin > 2000 || selMin < 1000) selMin = 300;
+    document.getElementById("sel-slider").addEventListener("input", e=>{
+      selMin = +e.target.value; updateSelVal(); render();
+    });
+    updateSelVal();
+  }
+}
+function updateGdpVal(){
+  document.getElementById("gdp-val").textContent = gdpMin===0 ? "Any" : fmtMoney(gdpMin);
+}
+function updateSelVal(){
+  const el = document.getElementById("sel-val");
+  if(!el) return;
+  el.textContent = mode==="income" ? fmtMoney(selMin) : selMin + "/100k";
+}
+
+function qualifyingGroups(country){
+  const rows = BUCKETS[country] || [];
+  const reliable = rows.filter(r=>r.reliable);
+  let qualifying;
+  if(mode === "income"){
+    qualifying = reliable.filter(r=> r.income !== null && r.income >= selMin);
+  } else {
+    qualifying = reliable.filter(r=> r.crime !== null && r.crime <= selMin);
+  }
+  return { reliable, qualifying };
+}
+
+function colorFor(country){
+  const g = GDP[country];
+  if(!g || g.topo === null) return { fill:"no-data" };
+  if(mode === "gdp"){
+    if(g.gdp === null) return { fill:"no-data" };
+    return g.gdp >= gdpMin ? { fill: rampGdp(g.gdp) } : { fill: "excluded" };
+  }
+  const { qualifying } = qualifyingGroups(country);
+  if(qualifying.length === 0) return { fill:"no-data" };
+  return { fill: ramp(qualifying.length) };
+}
+
+const rampColors = ["#E4DCC8","#CBDAC9","#A9C6A8","#7FAD82","#569163","#2F6F4F"];
+function ramp(count){
+  const i = Math.min(rampColors.length-1, Math.floor((count/TOTAL_GROUPS)*rampColors.length));
+  return rampColors[Math.max(0,i)];
+}
+const gdpRampColors = ["#EFE7C9","#E3D69E","#CBBE72","#B0A24F","#8F8536","#6E6A22"];
+function rampGdp(v){
+  const capped = Math.min(v, 100000);
+  const i = Math.min(gdpRampColors.length-1, Math.floor((capped/100000)*gdpRampColors.length));
+  return gdpRampColors[Math.max(0,i)];
+}
+
+function render(){
+  if(!countrySel) return;
+  countrySel.each(function(d){
+    const name = d.properties.name;
+    const label = byTopoName[name];
+    const el = d3.select(this);
+    el.classed("excluded", false).classed("no-data", false).style("fill", null);
+    if(!label){ el.classed("no-data", true); return; }
+    const c = colorFor(label);
+    if(c.fill === "excluded") el.classed("excluded", true);
+    else if(c.fill === "no-data") el.classed("no-data", true);
+    else el.style("fill", c.fill);
+  });
+  renderLegend();
+}
+
+function renderLegend(){
+  const l = document.getElementById("legend");
+  if(mode === "gdp"){
+    l.innerHTML = `
+      <span><span class="swatch" style="background:${gdpRampColors[gdpRampColors.length-1]}"></span>Higher GDP per capita</span>
+      <span><span class="swatch" style="background:#D8D2C2"></span>Below threshold</span>
+      <span><span class="swatch" style="background:#E9E2D0"></span>No GDP data / not mapped</span>`;
+  } else {
+    l.innerHTML = `
+      <span><span class="swatch" style="background:${rampColors[rampColors.length-1]}"></span>More qualifying groups</span>
+      <span><span class="swatch" style="background:#E9E2D0"></span>No qualifying groups / no data</span>`;
+  }
+}
+
+function showPanel(label){
+  const title = document.getElementById("panel-title");
+  const sub = document.getElementById("panel-sub");
+  const body = document.getElementById("panel-body");
+  const g = GDP[label];
+
+  if(mode === "gdp"){
+    title.textContent = label;
+    sub.textContent = g && g.gdp !== null ? "GDP per capita (PPP)" : "No GDP figure available";
+    body.className = "";
+    body.innerHTML = g && g.gdp !== null
+      ? `<div class="stat">${fmtMoney(g.gdp)}<br><span style="color:var(--muted); font-size:11px;">${g.gdp >= gdpMin ? "Clears the current threshold" : "Below the current threshold"}</span></div>`
+      : `<div class="placeholder">No GDP figure available for this entry (likely a historical or aggregate category).</div>`;
+    return;
+  }
+
+  const rows = BUCKETS[label];
+  if(!rows){
+    title.textContent = label;
+    sub.textContent = "";
+    body.className = "placeholder";
+    body.innerHTML = "No ACS-derived group data for this entry.";
+    return;
+  }
+  const { reliable, qualifying } = qualifyingGroups(label);
+  title.textContent = label;
+  sub.textContent = `${qualifying.length} of ${reliable.length} reliable groups qualify (${rows.length - reliable.length} unreliable, excluded)`;
+  body.className = "";
+  const metricLabel = mode === "income" ? "income" : "per 100k";
+  const sorted = rows.slice().sort((a,b)=>{
+    const av = mode==="income" ? (a.income??-1) : (a.crime??1e9);
+    const bv = mode==="income" ? (b.income??-1) : (b.crime??1e9);
+    return mode==="income" ? bv-av : av-bv;
+  });
+  let html = '<div class="manifest">';
+  sorted.forEach(r=>{
+    const val = mode==="income" ? r.income : r.crime;
+    const valStr = val===null ? "n/a" : (mode==="income" ? fmtMoney(val) : val+"/100k");
+    let cls = "no-qualify";
+    if(r.reliable){
+      const qualifies = mode==="income" ? (val!==null && val>=selMin) : (val!==null && val<=selMin);
+      cls = qualifies ? "qualify" : "no-qualify";
+    }
+    const flag = r.reliable ? "" : " (n too small)";
+    html += `<div class="row ${cls}"><span class="label">${r.sex}, ${r.educ}, ${r.age}${flag}</span><span class="num">${valStr}</span></div>`;
+  });
+  html += '</div>';
+  if(rows.length - reliable.length > 0){
+    html += `<div class="unreliable-note">Rows marked "n too small" have fewer than 30 sampled ACS records and are excluded from the qualifying count.</div>`;
+  }
+  body.innerHTML = html;
+}
+
+function normalizeTopoName(n){ return n.trim().toLowerCase(); }
+
+function buildTopoIndex(features){
+  const byName = {};
+  features.forEach(f=>{ byName[normalizeTopoName(f.properties.name)] = f.properties.name; });
+  const mapped = {};
+  const unmatched = [];
+  Object.entries(GDP).forEach(([label, g])=>{
+    if(!g.topo) return;
+    const key = normalizeTopoName(g.topo);
+    const real = byName[key];
+    if(real){ mapped[real] = label; }
+    else unmatched.push(label + " -> " + g.topo);
+  });
+  if(unmatched.length){
+    console.warn("Country name mismatches between country_gdp.json and the map topology (fix the 'topo' field for these):", unmatched);
+  }
+  return mapped;
+}
+
+Promise.all([
+  fetch(paths.gdp).then(r=>r.json()),
+  fetch(paths.buckets).then(r=>r.json()),
+  fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(r=>r.json())
+]).then(([gdpData, bucketData, world])=>{
+  GDP = gdpData; BUCKETS = bucketData;
+  const features = topojson.feature(world, world.objects.countries).features;
+  byTopoName = buildTopoIndex(features);
+
+  const svg = d3.select("#map").append("svg").attr("viewBox","0 0 960 480").attr("width","100%").style("display","block").style("max-height","480px");
+  const projection = d3.geoNaturalEarth1().scale(155).translate([480,240]);
+  const path = d3.geoPath(projection);
+
+  countrySel = svg.selectAll("path.country").data(features).join("path")
+    .attr("class","country")
+    .attr("d", path)
+    .on("click", (event,d)=>{
+      const label = byTopoName[d.properties.name];
+      if(label) showPanel(label);
+    })
+    .append("title");
+  countrySel = svg.selectAll("path.country"); // re-select after appending title (keep chainable)
+  svg.selectAll("path.country").select("title").text(d=> byTopoName[d.properties.name] || d.properties.name);
+
+  buildControls();
+  render();
+}).catch(err=>{
+  document.getElementById("map").innerHTML = "<p style='padding:20px;font-family:IBM Plex Mono,monospace;font-size:12px;'>Could not load map data: "+err+"</p>";
+  console.error(err);
+});
+
+document.querySelectorAll(".modes button").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".modes button").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    mode = btn.dataset.mode;
+    buildControls();
+    render();
+    document.getElementById("panel-title").textContent = "Click a country";
+    document.getElementById("panel-sub").textContent = "";
+    document.getElementById("panel-body").className = "placeholder";
+    document.getElementById("panel-body").textContent = "Click any country to see its group-level breakdown for the current mode and threshold.";
+  });
+});
+</script>
+</body>
+</html>
