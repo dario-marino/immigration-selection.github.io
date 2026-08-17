@@ -1,0 +1,1872 @@
+{
+ "years_pooled": [
+  2022,
+  2023,
+  2024
+ ],
+ "category_labels": {
+  "immediate_relatives": "Immediate relatives of U.S. citizens",
+  "family_sponsored": "Family-sponsored preferences",
+  "employment_based": "Employment-based preferences",
+  "diversity": "Diversity",
+  "refugee_asylee": "Refugees and asylees",
+  "other": "Other / not classified"
+ },
+ "category_totals": {
+  "immediate_relatives": 1649090,
+  "family_sponsored": 557401,
+  "employment_based": 637449,
+  "diversity": 160127,
+  "refugee_asylee": 401840,
+  "other": 143624
+ },
+ "grand_total": 3550791,
+ "countries": {
+  "Afghanistan": {
+   "total": 94803,
+   "immediate_relatives": 6628,
+   "family_sponsored": 1494,
+   "employment_based": 164,
+   "diversity": 2180,
+   "refugee_asylee": 3939,
+   "other": 80408
+  },
+  "Albania": {
+   "total": 16185,
+   "immediate_relatives": 7485,
+   "family_sponsored": 2684,
+   "employment_based": 634,
+   "diversity": 4659,
+   "refugee_asylee": 696,
+   "other": 47
+  },
+  "Algeria": {
+   "total": 12175,
+   "immediate_relatives": 2668,
+   "family_sponsored": 567,
+   "employment_based": 317,
+   "diversity": 8529,
+   "refugee_asylee": 40,
+   "other": 30
+  },
+  "Angola": {
+   "total": 1533,
+   "immediate_relatives": 482,
+   "family_sponsored": 30,
+   "employment_based": 97,
+   "diversity": 666,
+   "refugee_asylee": 244,
+   "other": 0
+  },
+  "Anguilla": {
+   "total": 59,
+   "immediate_relatives": 51,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Antigua and Barbuda": {
+   "total": 800,
+   "immediate_relatives": 531,
+   "family_sponsored": 203,
+   "employment_based": 40,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Argentina": {
+   "total": 14888,
+   "immediate_relatives": 8775,
+   "family_sponsored": 560,
+   "employment_based": 5001,
+   "diversity": 273,
+   "refugee_asylee": 176,
+   "other": 113
+  },
+  "Armenia": {
+   "total": 12297,
+   "immediate_relatives": 4932,
+   "family_sponsored": 1255,
+   "employment_based": 775,
+   "diversity": 4556,
+   "refugee_asylee": 762,
+   "other": 27
+  },
+  "Aruba": {
+   "total": 136,
+   "immediate_relatives": 97,
+   "family_sponsored": 10,
+   "employment_based": 20,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Australia": {
+   "total": 8169,
+   "immediate_relatives": 4093,
+   "family_sponsored": 280,
+   "employment_based": 3072,
+   "diversity": 679,
+   "refugee_asylee": 17,
+   "other": 28
+  },
+  "Austria": {
+   "total": 1114,
+   "immediate_relatives": 584,
+   "family_sponsored": 55,
+   "employment_based": 412,
+   "diversity": 48,
+   "refugee_asylee": 10,
+   "other": 10
+  },
+  "Azerbaijan": {
+   "total": 3839,
+   "immediate_relatives": 1053,
+   "family_sponsored": 173,
+   "employment_based": 409,
+   "diversity": 1851,
+   "refugee_asylee": 340,
+   "other": 23
+  },
+  "Bahamas": {
+   "total": 2587,
+   "immediate_relatives": 2089,
+   "family_sponsored": 148,
+   "employment_based": 300,
+   "diversity": 36,
+   "refugee_asylee": 20,
+   "other": 10
+  },
+  "Bahrain": {
+   "total": 523,
+   "immediate_relatives": 218,
+   "family_sponsored": 60,
+   "employment_based": 213,
+   "diversity": 20,
+   "refugee_asylee": 26,
+   "other": 0
+  },
+  "Bangladesh": {
+   "total": 46368,
+   "immediate_relatives": 18528,
+   "family_sponsored": 18853,
+   "employment_based": 6878,
+   "diversity": 0,
+   "refugee_asylee": 2032,
+   "other": 40
+  },
+  "Barbados": {
+   "total": 886,
+   "immediate_relatives": 613,
+   "family_sponsored": 172,
+   "employment_based": 60,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Belarus": {
+   "total": 7192,
+   "immediate_relatives": 2396,
+   "family_sponsored": 190,
+   "employment_based": 1121,
+   "diversity": 2766,
+   "refugee_asylee": 543,
+   "other": 0
+  },
+  "Belgium": {
+   "total": 1762,
+   "immediate_relatives": 794,
+   "family_sponsored": 38,
+   "employment_based": 860,
+   "diversity": 44,
+   "refugee_asylee": 20,
+   "other": 0
+  },
+  "Belize": {
+   "total": 2131,
+   "immediate_relatives": 1689,
+   "family_sponsored": 283,
+   "employment_based": 93,
+   "diversity": 0,
+   "refugee_asylee": 25,
+   "other": 61
+  },
+  "Benin": {
+   "total": 2371,
+   "immediate_relatives": 1097,
+   "family_sponsored": 270,
+   "employment_based": 92,
+   "diversity": 875,
+   "refugee_asylee": 37,
+   "other": 0
+  },
+  "Bermuda": {
+   "total": 225,
+   "immediate_relatives": 155,
+   "family_sponsored": 11,
+   "employment_based": 39,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Bhutan": {
+   "total": 599,
+   "immediate_relatives": 193,
+   "family_sponsored": 0,
+   "employment_based": 30,
+   "diversity": 230,
+   "refugee_asylee": 143,
+   "other": 3
+  },
+  "Bolivia": {
+   "total": 5271,
+   "immediate_relatives": 3612,
+   "family_sponsored": 905,
+   "employment_based": 452,
+   "diversity": 63,
+   "refugee_asylee": 158,
+   "other": 81
+  },
+  "Bosnia and Herzegovina": {
+   "total": 1436,
+   "immediate_relatives": 916,
+   "family_sponsored": 165,
+   "employment_based": 192,
+   "diversity": 103,
+   "refugee_asylee": 60,
+   "other": 0
+  },
+  "Botswana": {
+   "total": 188,
+   "immediate_relatives": 106,
+   "family_sponsored": 10,
+   "employment_based": 45,
+   "diversity": 10,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Brazil": {
+   "total": 81539,
+   "immediate_relatives": 40060,
+   "family_sponsored": 2550,
+   "employment_based": 37455,
+   "diversity": 50,
+   "refugee_asylee": 901,
+   "other": 533
+  },
+  "Brunei": {
+   "total": 83,
+   "immediate_relatives": 30,
+   "family_sponsored": 0,
+   "employment_based": 37,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Bulgaria": {
+   "total": 3081,
+   "immediate_relatives": 1973,
+   "family_sponsored": 316,
+   "employment_based": 447,
+   "diversity": 300,
+   "refugee_asylee": 30,
+   "other": 20
+  },
+  "Burkina Faso": {
+   "total": 2344,
+   "immediate_relatives": 1259,
+   "family_sponsored": 189,
+   "employment_based": 113,
+   "diversity": 199,
+   "refugee_asylee": 591,
+   "other": 3
+  },
+  "Burma": {
+   "total": 10289,
+   "immediate_relatives": 2696,
+   "family_sponsored": 1182,
+   "employment_based": 444,
+   "diversity": 1497,
+   "refugee_asylee": 4460,
+   "other": 0
+  },
+  "Burundi": {
+   "total": 2598,
+   "immediate_relatives": 336,
+   "family_sponsored": 39,
+   "employment_based": 57,
+   "diversity": 656,
+   "refugee_asylee": 1510,
+   "other": 0
+  },
+  "Cabo Verde": {
+   "total": 5329,
+   "immediate_relatives": 3110,
+   "family_sponsored": 2137,
+   "employment_based": 40,
+   "diversity": 30,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Cambodia": {
+   "total": 8800,
+   "immediate_relatives": 5598,
+   "family_sponsored": 2291,
+   "employment_based": 515,
+   "diversity": 325,
+   "refugee_asylee": 30,
+   "other": 10
+  },
+  "Cameroon": {
+   "total": 17879,
+   "immediate_relatives": 7162,
+   "family_sponsored": 2307,
+   "employment_based": 401,
+   "diversity": 4762,
+   "refugee_asylee": 3222,
+   "other": 25
+  },
+  "Canada": {
+   "total": 34807,
+   "immediate_relatives": 17240,
+   "family_sponsored": 1803,
+   "employment_based": 14750,
+   "diversity": 165,
+   "refugee_asylee": 173,
+   "other": 676
+  },
+  "Cayman Islands": {
+   "total": 160,
+   "immediate_relatives": 105,
+   "family_sponsored": 24,
+   "employment_based": 17,
+   "diversity": 0,
+   "refugee_asylee": 14,
+   "other": 0
+  },
+  "Central African Republic": {
+   "total": 385,
+   "immediate_relatives": 56,
+   "family_sponsored": 0,
+   "employment_based": 5,
+   "diversity": 16,
+   "refugee_asylee": 302,
+   "other": 0
+  },
+  "Chad": {
+   "total": 674,
+   "immediate_relatives": 138,
+   "family_sponsored": 38,
+   "employment_based": 10,
+   "diversity": 335,
+   "refugee_asylee": 148,
+   "other": 0
+  },
+  "Chile": {
+   "total": 6487,
+   "immediate_relatives": 3805,
+   "family_sponsored": 271,
+   "employment_based": 2035,
+   "diversity": 34,
+   "refugee_asylee": 307,
+   "other": 45
+  },
+  "China, People's Republic": {
+   "total": 198680,
+   "immediate_relatives": 68038,
+   "family_sponsored": 21628,
+   "employment_based": 85924,
+   "diversity": 83,
+   "refugee_asylee": 22301,
+   "other": 706
+  },
+  "Colombia": {
+   "total": 76673,
+   "immediate_relatives": 56850,
+   "family_sponsored": 8886,
+   "employment_based": 8199,
+   "diversity": 19,
+   "refugee_asylee": 2463,
+   "other": 246
+  },
+  "Comoros": {
+   "total": 10,
+   "immediate_relatives": 10,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Congo, Democratic Republic": {
+   "total": 14608,
+   "immediate_relatives": 2615,
+   "family_sponsored": 1011,
+   "employment_based": 200,
+   "diversity": 2564,
+   "refugee_asylee": 8114,
+   "other": 10
+  },
+  "Congo, Republic": {
+   "total": 1437,
+   "immediate_relatives": 379,
+   "family_sponsored": 30,
+   "employment_based": 145,
+   "diversity": 301,
+   "refugee_asylee": 592,
+   "other": 0
+  },
+  "Costa Rica": {
+   "total": 7397,
+   "immediate_relatives": 5564,
+   "family_sponsored": 580,
+   "employment_based": 1012,
+   "diversity": 63,
+   "refugee_asylee": 121,
+   "other": 57
+  },
+  "Cote d'Ivoire": {
+   "total": 4619,
+   "immediate_relatives": 2376,
+   "family_sponsored": 621,
+   "employment_based": 147,
+   "diversity": 923,
+   "refugee_asylee": 513,
+   "other": 29
+  },
+  "Croatia": {
+   "total": 749,
+   "immediate_relatives": 493,
+   "family_sponsored": 20,
+   "employment_based": 197,
+   "diversity": 36,
+   "refugee_asylee": 10,
+   "other": 0
+  },
+  "Cuba": {
+   "total": 302282,
+   "immediate_relatives": 52032,
+   "family_sponsored": 32148,
+   "employment_based": 108,
+   "diversity": 2563,
+   "refugee_asylee": 215388,
+   "other": 53
+  },
+  "Curacao": {
+   "total": 125,
+   "immediate_relatives": 93,
+   "family_sponsored": 0,
+   "employment_based": 9,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Cyprus": {
+   "total": 300,
+   "immediate_relatives": 134,
+   "family_sponsored": 0,
+   "employment_based": 113,
+   "diversity": 18,
+   "refugee_asylee": 20,
+   "other": 0
+  },
+  "Czechia": {
+   "total": 1524,
+   "immediate_relatives": 1011,
+   "family_sponsored": 34,
+   "employment_based": 400,
+   "diversity": 46,
+   "refugee_asylee": 23,
+   "other": 0
+  },
+  "Czechoslovakia (former)": {
+   "total": 163,
+   "immediate_relatives": 60,
+   "family_sponsored": 0,
+   "employment_based": 65,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "D Data withheld to limit disclosure.": {
+   "total": 0,
+   "immediate_relatives": 0,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Denmark": {
+   "total": 1104,
+   "immediate_relatives": 534,
+   "family_sponsored": 37,
+   "employment_based": 519,
+   "diversity": 18,
+   "refugee_asylee": 0,
+   "other": 20
+  },
+  "Djibouti": {
+   "total": 484,
+   "immediate_relatives": 105,
+   "family_sponsored": 33,
+   "employment_based": 13,
+   "diversity": 182,
+   "refugee_asylee": 151,
+   "other": 0
+  },
+  "Dominica": {
+   "total": 1245,
+   "immediate_relatives": 778,
+   "family_sponsored": 385,
+   "employment_based": 66,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Dominican Republic": {
+   "total": 178652,
+   "immediate_relatives": 91596,
+   "family_sponsored": 85499,
+   "employment_based": 992,
+   "diversity": 3,
+   "refugee_asylee": 259,
+   "other": 303
+  },
+  "Ecuador": {
+   "total": 37010,
+   "immediate_relatives": 21831,
+   "family_sponsored": 9158,
+   "employment_based": 2505,
+   "diversity": 610,
+   "refugee_asylee": 1187,
+   "other": 1709
+  },
+  "Egypt": {
+   "total": 27958,
+   "immediate_relatives": 10278,
+   "family_sponsored": 2524,
+   "employment_based": 3247,
+   "diversity": 6449,
+   "refugee_asylee": 5459,
+   "other": 31
+  },
+  "El Salvador": {
+   "total": 88196,
+   "immediate_relatives": 42321,
+   "family_sponsored": 19139,
+   "employment_based": 12179,
+   "diversity": 0,
+   "refugee_asylee": 10295,
+   "other": 4262
+  },
+  "Equatorial Guinea": {
+   "total": 182,
+   "immediate_relatives": 135,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 20,
+   "other": 0
+  },
+  "Eritrea": {
+   "total": 4810,
+   "immediate_relatives": 1420,
+   "family_sponsored": 375,
+   "employment_based": 95,
+   "diversity": 114,
+   "refugee_asylee": 2806,
+   "other": 0
+  },
+  "Estonia": {
+   "total": 388,
+   "immediate_relatives": 262,
+   "family_sponsored": 0,
+   "employment_based": 96,
+   "diversity": 21,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Eswatini": {
+   "total": 82,
+   "immediate_relatives": 58,
+   "family_sponsored": 0,
+   "employment_based": 19,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Ethiopia": {
+   "total": 22130,
+   "immediate_relatives": 10872,
+   "family_sponsored": 4974,
+   "employment_based": 1143,
+   "diversity": 2129,
+   "refugee_asylee": 2991,
+   "other": 31
+  },
+  "Fiji": {
+   "total": 3254,
+   "immediate_relatives": 779,
+   "family_sponsored": 473,
+   "employment_based": 28,
+   "diversity": 1950,
+   "refugee_asylee": 0,
+   "other": 10
+  },
+  "Finland": {
+   "total": 948,
+   "immediate_relatives": 407,
+   "family_sponsored": 16,
+   "employment_based": 470,
+   "diversity": 45,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "France": {
+   "total": 12491,
+   "immediate_relatives": 4983,
+   "family_sponsored": 464,
+   "employment_based": 6583,
+   "diversity": 350,
+   "refugee_asylee": 77,
+   "other": 44
+  },
+  "French Polynesia": {
+   "total": 101,
+   "immediate_relatives": 30,
+   "family_sponsored": 0,
+   "employment_based": 52,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Gabon": {
+   "total": 465,
+   "immediate_relatives": 291,
+   "family_sponsored": 37,
+   "employment_based": 20,
+   "diversity": 62,
+   "refugee_asylee": 33,
+   "other": 0
+  },
+  "Gambia": {
+   "total": 3390,
+   "immediate_relatives": 2572,
+   "family_sponsored": 267,
+   "employment_based": 78,
+   "diversity": 72,
+   "refugee_asylee": 383,
+   "other": 18
+  },
+  "Georgia": {
+   "total": 7463,
+   "immediate_relatives": 3041,
+   "family_sponsored": 594,
+   "employment_based": 520,
+   "diversity": 2937,
+   "refugee_asylee": 351,
+   "other": 10
+  },
+  "Germany": {
+   "total": 12768,
+   "immediate_relatives": 6584,
+   "family_sponsored": 396,
+   "employment_based": 4862,
+   "diversity": 683,
+   "refugee_asylee": 145,
+   "other": 108
+  },
+  "Ghana": {
+   "total": 23231,
+   "immediate_relatives": 17902,
+   "family_sponsored": 1642,
+   "employment_based": 1900,
+   "diversity": 1485,
+   "refugee_asylee": 270,
+   "other": 42
+  },
+  "Greece": {
+   "total": 2998,
+   "immediate_relatives": 1601,
+   "family_sponsored": 218,
+   "employment_based": 1011,
+   "diversity": 129,
+   "refugee_asylee": 10,
+   "other": 10
+  },
+  "Grenada": {
+   "total": 1329,
+   "immediate_relatives": 996,
+   "family_sponsored": 267,
+   "employment_based": 63,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Guatemala": {
+   "total": 49980,
+   "immediate_relatives": 19253,
+   "family_sponsored": 7822,
+   "employment_based": 9672,
+   "diversity": 80,
+   "refugee_asylee": 8462,
+   "other": 4691
+  },
+  "Guinea": {
+   "total": 4265,
+   "immediate_relatives": 2314,
+   "family_sponsored": 188,
+   "employment_based": 143,
+   "diversity": 841,
+   "refugee_asylee": 781,
+   "other": 18
+  },
+  "Guinea-Bissau": {
+   "total": 140,
+   "immediate_relatives": 109,
+   "family_sponsored": 0,
+   "employment_based": 4,
+   "diversity": 10,
+   "refugee_asylee": 3,
+   "other": 0
+  },
+  "Guyana": {
+   "total": 13925,
+   "immediate_relatives": 7747,
+   "family_sponsored": 5924,
+   "employment_based": 173,
+   "diversity": 10,
+   "refugee_asylee": 64,
+   "other": 20
+  },
+  "Haiti": {
+   "total": 36682,
+   "immediate_relatives": 27690,
+   "family_sponsored": 6870,
+   "employment_based": 829,
+   "diversity": 0,
+   "refugee_asylee": 1233,
+   "other": 60
+  },
+  "Honduras": {
+   "total": 48489,
+   "immediate_relatives": 24222,
+   "family_sponsored": 6919,
+   "employment_based": 7956,
+   "diversity": 32,
+   "refugee_asylee": 6487,
+   "other": 2883
+  },
+  "Hong Kong": {
+   "total": 6541,
+   "immediate_relatives": 2326,
+   "family_sponsored": 1590,
+   "employment_based": 2443,
+   "diversity": 125,
+   "refugee_asylee": 30,
+   "other": 10
+  },
+  "Hungary": {
+   "total": 2500,
+   "immediate_relatives": 1408,
+   "family_sponsored": 86,
+   "employment_based": 808,
+   "diversity": 148,
+   "refugee_asylee": 24,
+   "other": 26
+  },
+  "Iceland": {
+   "total": 198,
+   "immediate_relatives": 116,
+   "family_sponsored": 0,
+   "employment_based": 65,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "India": {
+   "total": 271882,
+   "immediate_relatives": 86276,
+   "family_sponsored": 32855,
+   "employment_based": 143705,
+   "diversity": 146,
+   "refugee_asylee": 7279,
+   "other": 1651
+  },
+  "Indonesia": {
+   "total": 5652,
+   "immediate_relatives": 3779,
+   "family_sponsored": 366,
+   "employment_based": 848,
+   "diversity": 221,
+   "refugee_asylee": 393,
+   "other": 55
+  },
+  "Iran": {
+   "total": 30907,
+   "immediate_relatives": 11618,
+   "family_sponsored": 4551,
+   "employment_based": 8720,
+   "diversity": 4053,
+   "refugee_asylee": 1905,
+   "other": 60
+  },
+  "Iraq": {
+   "total": 10797,
+   "immediate_relatives": 5167,
+   "family_sponsored": 742,
+   "employment_based": 338,
+   "diversity": 1173,
+   "refugee_asylee": 2587,
+   "other": 800
+  },
+  "Ireland": {
+   "total": 3896,
+   "immediate_relatives": 2003,
+   "family_sponsored": 83,
+   "employment_based": 1767,
+   "diversity": 39,
+   "refugee_asylee": 0,
+   "other": 14
+  },
+  "Israel": {
+   "total": 10889,
+   "immediate_relatives": 5654,
+   "family_sponsored": 320,
+   "employment_based": 4606,
+   "diversity": 154,
+   "refugee_asylee": 136,
+   "other": 49
+  },
+  "Italy": {
+   "total": 10117,
+   "immediate_relatives": 4840,
+   "family_sponsored": 515,
+   "employment_based": 4044,
+   "diversity": 415,
+   "refugee_asylee": 270,
+   "other": 43
+  },
+  "Jamaica": {
+   "total": 66612,
+   "immediate_relatives": 49161,
+   "family_sponsored": 14564,
+   "employment_based": 2515,
+   "diversity": 0,
+   "refugee_asylee": 256,
+   "other": 126
+  },
+  "Japan": {
+   "total": 11984,
+   "immediate_relatives": 6576,
+   "family_sponsored": 343,
+   "employment_based": 4381,
+   "diversity": 615,
+   "refugee_asylee": 10,
+   "other": 40
+  },
+  "Jordan": {
+   "total": 18339,
+   "immediate_relatives": 10488,
+   "family_sponsored": 3343,
+   "employment_based": 1705,
+   "diversity": 1727,
+   "refugee_asylee": 1038,
+   "other": 28
+  },
+  "Kazakhstan": {
+   "total": 7177,
+   "immediate_relatives": 2305,
+   "family_sponsored": 204,
+   "employment_based": 1149,
+   "diversity": 2852,
+   "refugee_asylee": 653,
+   "other": 24
+  },
+  "Kenya": {
+   "total": 18994,
+   "immediate_relatives": 7824,
+   "family_sponsored": 1102,
+   "employment_based": 5054,
+   "diversity": 4135,
+   "refugee_asylee": 834,
+   "other": 55
+  },
+  "Kiribati": {
+   "total": 20,
+   "immediate_relatives": 10,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 10,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Korea, North": {
+   "total": 82,
+   "immediate_relatives": 75,
+   "family_sponsored": 0,
+   "employment_based": 14,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Korea, South": {
+   "total": 47042,
+   "immediate_relatives": 16362,
+   "family_sponsored": 2059,
+   "employment_based": 28408,
+   "diversity": 55,
+   "refugee_asylee": 30,
+   "other": 138
+  },
+  "Kosovo": {
+   "total": 2613,
+   "immediate_relatives": 1151,
+   "family_sponsored": 368,
+   "employment_based": 90,
+   "diversity": 669,
+   "refugee_asylee": 286,
+   "other": 10
+  },
+  "Kuwait": {
+   "total": 3316,
+   "immediate_relatives": 1289,
+   "family_sponsored": 475,
+   "employment_based": 818,
+   "diversity": 397,
+   "refugee_asylee": 344,
+   "other": 3
+  },
+  "Kyrgyzstan": {
+   "total": 6827,
+   "immediate_relatives": 1123,
+   "family_sponsored": 163,
+   "employment_based": 150,
+   "diversity": 4629,
+   "refugee_asylee": 679,
+   "other": 20
+  },
+  "Laos": {
+   "total": 2351,
+   "immediate_relatives": 1943,
+   "family_sponsored": 286,
+   "employment_based": 57,
+   "diversity": 17,
+   "refugee_asylee": 38,
+   "other": 10
+  },
+  "Latvia": {
+   "total": 733,
+   "immediate_relatives": 444,
+   "family_sponsored": 47,
+   "employment_based": 146,
+   "diversity": 82,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Lebanon": {
+   "total": 11824,
+   "immediate_relatives": 7132,
+   "family_sponsored": 2392,
+   "employment_based": 1619,
+   "diversity": 396,
+   "refugee_asylee": 262,
+   "other": 13
+  },
+  "Lesotho": {
+   "total": 43,
+   "immediate_relatives": 28,
+   "family_sponsored": 0,
+   "employment_based": 10,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Liberia": {
+   "total": 8172,
+   "immediate_relatives": 3835,
+   "family_sponsored": 790,
+   "employment_based": 65,
+   "diversity": 1391,
+   "refugee_asylee": 2086,
+   "other": 15
+  },
+  "Libya": {
+   "total": 2219,
+   "immediate_relatives": 868,
+   "family_sponsored": 99,
+   "employment_based": 532,
+   "diversity": 504,
+   "refugee_asylee": 216,
+   "other": 0
+  },
+  "Lithuania": {
+   "total": 1636,
+   "immediate_relatives": 1062,
+   "family_sponsored": 115,
+   "employment_based": 268,
+   "diversity": 171,
+   "refugee_asylee": 16,
+   "other": 14
+  },
+  "Luxembourg": {
+   "total": 130,
+   "immediate_relatives": 40,
+   "family_sponsored": 0,
+   "employment_based": 75,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Macau": {
+   "total": 232,
+   "immediate_relatives": 91,
+   "family_sponsored": 59,
+   "employment_based": 68,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Madagascar": {
+   "total": 257,
+   "immediate_relatives": 128,
+   "family_sponsored": 20,
+   "employment_based": 61,
+   "diversity": 33,
+   "refugee_asylee": 5,
+   "other": 0
+  },
+  "Malawi": {
+   "total": 679,
+   "immediate_relatives": 359,
+   "family_sponsored": 23,
+   "employment_based": 125,
+   "diversity": 35,
+   "refugee_asylee": 127,
+   "other": 0
+  },
+  "Malaysia": {
+   "total": 4913,
+   "immediate_relatives": 1974,
+   "family_sponsored": 261,
+   "employment_based": 1467,
+   "diversity": 94,
+   "refugee_asylee": 1102,
+   "other": 35
+  },
+  "Maldives": {
+   "total": 20,
+   "immediate_relatives": 20,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Mali": {
+   "total": 1041,
+   "immediate_relatives": 722,
+   "family_sponsored": 50,
+   "employment_based": 39,
+   "diversity": 55,
+   "refugee_asylee": 164,
+   "other": 11
+  },
+  "Malta": {
+   "total": 610,
+   "immediate_relatives": 410,
+   "family_sponsored": 15,
+   "employment_based": 30,
+   "diversity": 50,
+   "refugee_asylee": 75,
+   "other": 10
+  },
+  "Marshall Islands": {
+   "total": 65,
+   "immediate_relatives": 30,
+   "family_sponsored": 0,
+   "employment_based": 10,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Mauritania": {
+   "total": 966,
+   "immediate_relatives": 328,
+   "family_sponsored": 10,
+   "employment_based": 7,
+   "diversity": 224,
+   "refugee_asylee": 392,
+   "other": 0
+  },
+  "Mauritius": {
+   "total": 225,
+   "immediate_relatives": 144,
+   "family_sponsored": 4,
+   "employment_based": 73,
+   "diversity": 4,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Mexico": {
+   "total": 521902,
+   "immediate_relatives": 366641,
+   "family_sponsored": 87578,
+   "employment_based": 25056,
+   "diversity": 25,
+   "refugee_asylee": 4182,
+   "other": 38430
+  },
+  "Micronesia, Federated States": {
+   "total": 51,
+   "immediate_relatives": 33,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Moldova": {
+   "total": 4649,
+   "immediate_relatives": 2374,
+   "family_sponsored": 269,
+   "employment_based": 150,
+   "diversity": 886,
+   "refugee_asylee": 861,
+   "other": 10
+  },
+  "Mongolia": {
+   "total": 2845,
+   "immediate_relatives": 1195,
+   "family_sponsored": 137,
+   "employment_based": 718,
+   "diversity": 558,
+   "refugee_asylee": 197,
+   "other": 60
+  },
+  "Montenegro": {
+   "total": 1104,
+   "immediate_relatives": 830,
+   "family_sponsored": 110,
+   "employment_based": 60,
+   "diversity": 59,
+   "refugee_asylee": 45,
+   "other": 0
+  },
+  "Montserrat": {
+   "total": 30,
+   "immediate_relatives": 27,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Morocco": {
+   "total": 16556,
+   "immediate_relatives": 6855,
+   "family_sponsored": 1407,
+   "employment_based": 500,
+   "diversity": 7751,
+   "refugee_asylee": 50,
+   "other": 23
+  },
+  "Mozambique": {
+   "total": 206,
+   "immediate_relatives": 134,
+   "family_sponsored": 0,
+   "employment_based": 36,
+   "diversity": 0,
+   "refugee_asylee": 10,
+   "other": 0
+  },
+  "Namibia": {
+   "total": 250,
+   "immediate_relatives": 139,
+   "family_sponsored": 0,
+   "employment_based": 72,
+   "diversity": 14,
+   "refugee_asylee": 30,
+   "other": 0
+  },
+  "Nauru": {
+   "total": 10,
+   "immediate_relatives": 0,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Nepal": {
+   "total": 36790,
+   "immediate_relatives": 13536,
+   "family_sponsored": 3860,
+   "employment_based": 6573,
+   "diversity": 9834,
+   "refugee_asylee": 2932,
+   "other": 65
+  },
+  "Netherlands": {
+   "total": 3182,
+   "immediate_relatives": 1568,
+   "family_sponsored": 90,
+   "employment_based": 1440,
+   "diversity": 50,
+   "refugee_asylee": 10,
+   "other": 20
+  },
+  "Netherlands Antilles (former)": {
+   "total": 24,
+   "immediate_relatives": 20,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "New Zealand": {
+   "total": 2040,
+   "immediate_relatives": 1080,
+   "family_sponsored": 81,
+   "employment_based": 640,
+   "diversity": 225,
+   "refugee_asylee": 0,
+   "other": 14
+  },
+  "Nicaragua": {
+   "total": 11804,
+   "immediate_relatives": 7086,
+   "family_sponsored": 2221,
+   "employment_based": 523,
+   "diversity": 115,
+   "refugee_asylee": 1579,
+   "other": 290
+  },
+  "Niger": {
+   "total": 649,
+   "immediate_relatives": 401,
+   "family_sponsored": 33,
+   "employment_based": 114,
+   "diversity": 30,
+   "refugee_asylee": 38,
+   "other": 10
+  },
+  "Nigeria": {
+   "total": 47785,
+   "immediate_relatives": 33639,
+   "family_sponsored": 2498,
+   "employment_based": 9413,
+   "diversity": 34,
+   "refugee_asylee": 2147,
+   "other": 64
+  },
+  "North Macedonia": {
+   "total": 2779,
+   "immediate_relatives": 1507,
+   "family_sponsored": 493,
+   "employment_based": 215,
+   "diversity": 504,
+   "refugee_asylee": 46,
+   "other": 4
+  },
+  "Norway": {
+   "total": 929,
+   "immediate_relatives": 583,
+   "family_sponsored": 33,
+   "employment_based": 286,
+   "diversity": 20,
+   "refugee_asylee": 10,
+   "other": 0
+  },
+  "Oman": {
+   "total": 590,
+   "immediate_relatives": 148,
+   "family_sponsored": 36,
+   "employment_based": 321,
+   "diversity": 72,
+   "refugee_asylee": 13,
+   "other": 0
+  },
+  "Pakistan": {
+   "total": 46197,
+   "immediate_relatives": 20422,
+   "family_sponsored": 15328,
+   "employment_based": 7660,
+   "diversity": 36,
+   "refugee_asylee": 2387,
+   "other": 364
+  },
+  "Palau": {
+   "total": 20,
+   "immediate_relatives": 20,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Panama": {
+   "total": 3092,
+   "immediate_relatives": 2287,
+   "family_sponsored": 395,
+   "employment_based": 298,
+   "diversity": 3,
+   "refugee_asylee": 75,
+   "other": 24
+  },
+  "Papua New Guinea": {
+   "total": 106,
+   "immediate_relatives": 52,
+   "family_sponsored": 0,
+   "employment_based": 26,
+   "diversity": 14,
+   "refugee_asylee": 4,
+   "other": 0
+  },
+  "Paraguay": {
+   "total": 1485,
+   "immediate_relatives": 1192,
+   "family_sponsored": 108,
+   "employment_based": 136,
+   "diversity": 0,
+   "refugee_asylee": 30,
+   "other": 20
+  },
+  "Peru": {
+   "total": 33575,
+   "immediate_relatives": 22145,
+   "family_sponsored": 7203,
+   "employment_based": 1870,
+   "diversity": 1401,
+   "refugee_asylee": 432,
+   "other": 524
+  },
+  "Philippines": {
+   "total": 134018,
+   "immediate_relatives": 59844,
+   "family_sponsored": 29043,
+   "employment_based": 44437,
+   "diversity": 22,
+   "refugee_asylee": 75,
+   "other": 587
+  },
+  "Poland": {
+   "total": 9972,
+   "immediate_relatives": 5999,
+   "family_sponsored": 864,
+   "employment_based": 2580,
+   "diversity": 411,
+   "refugee_asylee": 26,
+   "other": 102
+  },
+  "Portugal": {
+   "total": 2416,
+   "immediate_relatives": 1578,
+   "family_sponsored": 110,
+   "employment_based": 678,
+   "diversity": 20,
+   "refugee_asylee": 15,
+   "other": 25
+  },
+  "Qatar": {
+   "total": 1660,
+   "immediate_relatives": 310,
+   "family_sponsored": 142,
+   "employment_based": 625,
+   "diversity": 337,
+   "refugee_asylee": 93,
+   "other": 143
+  },
+  "Romania": {
+   "total": 5577,
+   "immediate_relatives": 3543,
+   "family_sponsored": 287,
+   "employment_based": 1200,
+   "diversity": 408,
+   "refugee_asylee": 125,
+   "other": 24
+  },
+  "Russia": {
+   "total": 31196,
+   "immediate_relatives": 12897,
+   "family_sponsored": 1315,
+   "employment_based": 6751,
+   "diversity": 7575,
+   "refugee_asylee": 2608,
+   "other": 60
+  },
+  "Rwanda": {
+   "total": 4890,
+   "immediate_relatives": 688,
+   "family_sponsored": 218,
+   "employment_based": 162,
+   "diversity": 1650,
+   "refugee_asylee": 2172,
+   "other": 0
+  },
+  "Saint Kitts and Nevis": {
+   "total": 483,
+   "immediate_relatives": 334,
+   "family_sponsored": 134,
+   "employment_based": 10,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Saint Lucia": {
+   "total": 1798,
+   "immediate_relatives": 1297,
+   "family_sponsored": 377,
+   "employment_based": 109,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Saint Martin (French)": {
+   "total": 25,
+   "immediate_relatives": 19,
+   "family_sponsored": 16,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Saint Vincent and the Grenadines": {
+   "total": 837,
+   "immediate_relatives": 658,
+   "family_sponsored": 147,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Samoa": {
+   "total": 539,
+   "immediate_relatives": 508,
+   "family_sponsored": 26,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Sao Tome and Principe": {
+   "total": 25,
+   "immediate_relatives": 10,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Saudi Arabia": {
+   "total": 8504,
+   "immediate_relatives": 2789,
+   "family_sponsored": 884,
+   "employment_based": 2542,
+   "diversity": 1475,
+   "refugee_asylee": 787,
+   "other": 27
+  },
+  "Senegal": {
+   "total": 4353,
+   "immediate_relatives": 3344,
+   "family_sponsored": 312,
+   "employment_based": 157,
+   "diversity": 281,
+   "refugee_asylee": 238,
+   "other": 41
+  },
+  "Serbia": {
+   "total": 2156,
+   "immediate_relatives": 1684,
+   "family_sponsored": 0,
+   "employment_based": 381,
+   "diversity": 30,
+   "refugee_asylee": 62,
+   "other": 0
+  },
+  "Serbia and Montenegro (former)": {
+   "total": 1544,
+   "immediate_relatives": 758,
+   "family_sponsored": 217,
+   "employment_based": 221,
+   "diversity": 289,
+   "refugee_asylee": 40,
+   "other": 10
+  },
+  "Seychelles": {
+   "total": 24,
+   "immediate_relatives": 15,
+   "family_sponsored": 0,
+   "employment_based": 0,
+   "diversity": 4,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Sierra Leone": {
+   "total": 5873,
+   "immediate_relatives": 3922,
+   "family_sponsored": 915,
+   "employment_based": 50,
+   "diversity": 706,
+   "refugee_asylee": 216,
+   "other": 0
+  },
+  "Singapore": {
+   "total": 2621,
+   "immediate_relatives": 931,
+   "family_sponsored": 109,
+   "employment_based": 1538,
+   "diversity": 27,
+   "refugee_asylee": 6,
+   "other": 10
+  },
+  "Sint Maarten": {
+   "total": 134,
+   "immediate_relatives": 101,
+   "family_sponsored": 18,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Slovakia": {
+   "total": 1004,
+   "immediate_relatives": 676,
+   "family_sponsored": 31,
+   "employment_based": 269,
+   "diversity": 32,
+   "refugee_asylee": 3,
+   "other": 3
+  },
+  "Slovenia": {
+   "total": 260,
+   "immediate_relatives": 168,
+   "family_sponsored": 10,
+   "employment_based": 76,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Somalia": {
+   "total": 4302,
+   "immediate_relatives": 2327,
+   "family_sponsored": 326,
+   "employment_based": 20,
+   "diversity": 650,
+   "refugee_asylee": 972,
+   "other": 0
+  },
+  "South Africa": {
+   "total": 11265,
+   "immediate_relatives": 4733,
+   "family_sponsored": 403,
+   "employment_based": 5332,
+   "diversity": 653,
+   "refugee_asylee": 100,
+   "other": 10
+  },
+  "South Sudan": {
+   "total": 370,
+   "immediate_relatives": 163,
+   "family_sponsored": 20,
+   "employment_based": 7,
+   "diversity": 30,
+   "refugee_asylee": 164,
+   "other": 0
+  },
+  "Soviet Union (former)": {
+   "total": 3996,
+   "immediate_relatives": 1945,
+   "family_sponsored": 36,
+   "employment_based": 752,
+   "diversity": 49,
+   "refugee_asylee": 1188,
+   "other": 6
+  },
+  "Spain": {
+   "total": 9035,
+   "immediate_relatives": 3781,
+   "family_sponsored": 417,
+   "employment_based": 3985,
+   "diversity": 100,
+   "refugee_asylee": 637,
+   "other": 20
+  },
+  "Sri Lanka": {
+   "total": 7132,
+   "immediate_relatives": 2136,
+   "family_sponsored": 646,
+   "employment_based": 1663,
+   "diversity": 2073,
+   "refugee_asylee": 567,
+   "other": 27
+  },
+  "Sudan": {
+   "total": 8591,
+   "immediate_relatives": 1979,
+   "family_sponsored": 332,
+   "employment_based": 200,
+   "diversity": 4429,
+   "refugee_asylee": 1661,
+   "other": 0
+  },
+  "Suriname": {
+   "total": 406,
+   "immediate_relatives": 273,
+   "family_sponsored": 89,
+   "employment_based": 30,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Sweden": {
+   "total": 2341,
+   "immediate_relatives": 1271,
+   "family_sponsored": 88,
+   "employment_based": 893,
+   "diversity": 44,
+   "refugee_asylee": 0,
+   "other": 20
+  },
+  "Switzerland": {
+   "total": 1734,
+   "immediate_relatives": 771,
+   "family_sponsored": 44,
+   "employment_based": 830,
+   "diversity": 56,
+   "refugee_asylee": 20,
+   "other": 0
+  },
+  "Syria": {
+   "total": 12518,
+   "immediate_relatives": 5067,
+   "family_sponsored": 1950,
+   "employment_based": 564,
+   "diversity": 451,
+   "refugee_asylee": 4452,
+   "other": 4
+  },
+  "Taiwan": {
+   "total": 15411,
+   "immediate_relatives": 5690,
+   "family_sponsored": 1541,
+   "employment_based": 7576,
+   "diversity": 535,
+   "refugee_asylee": 14,
+   "other": 65
+  },
+  "Tajikistan": {
+   "total": 5181,
+   "immediate_relatives": 1000,
+   "family_sponsored": 196,
+   "employment_based": 251,
+   "diversity": 3530,
+   "refugee_asylee": 178,
+   "other": 26
+  },
+  "Tanzania": {
+   "total": 5313,
+   "immediate_relatives": 1201,
+   "family_sponsored": 109,
+   "employment_based": 249,
+   "diversity": 258,
+   "refugee_asylee": 3493,
+   "other": 23
+  },
+  "Thailand": {
+   "total": 15252,
+   "immediate_relatives": 10598,
+   "family_sponsored": 767,
+   "employment_based": 1785,
+   "diversity": 711,
+   "refugee_asylee": 1367,
+   "other": 44
+  },
+  "Togo": {
+   "total": 6317,
+   "immediate_relatives": 2452,
+   "family_sponsored": 1095,
+   "employment_based": 30,
+   "diversity": 2474,
+   "refugee_asylee": 226,
+   "other": 0
+  },
+  "Tonga": {
+   "total": 773,
+   "immediate_relatives": 564,
+   "family_sponsored": 119,
+   "employment_based": 3,
+   "diversity": 87,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Trinidad and Tobago": {
+   "total": 7855,
+   "immediate_relatives": 5201,
+   "family_sponsored": 1733,
+   "employment_based": 781,
+   "diversity": 68,
+   "refugee_asylee": 23,
+   "other": 59
+  },
+  "Tunisia": {
+   "total": 1939,
+   "immediate_relatives": 1208,
+   "family_sponsored": 89,
+   "employment_based": 297,
+   "diversity": 318,
+   "refugee_asylee": 20,
+   "other": 0
+  },
+  "Turkey": {
+   "total": 22361,
+   "immediate_relatives": 7329,
+   "family_sponsored": 720,
+   "employment_based": 4841,
+   "diversity": 3903,
+   "refugee_asylee": 5372,
+   "other": 206
+  },
+  "Turkmenistan": {
+   "total": 2332,
+   "immediate_relatives": 385,
+   "family_sponsored": 123,
+   "employment_based": 100,
+   "diversity": 1463,
+   "refugee_asylee": 195,
+   "other": 0
+  },
+  "Turks and Caicos Islands": {
+   "total": 145,
+   "immediate_relatives": 117,
+   "family_sponsored": 25,
+   "employment_based": 3,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Uganda": {
+   "total": 5370,
+   "immediate_relatives": 1880,
+   "family_sponsored": 275,
+   "employment_based": 524,
+   "diversity": 809,
+   "refugee_asylee": 1867,
+   "other": 25
+  },
+  "Ukraine": {
+   "total": 31901,
+   "immediate_relatives": 13987,
+   "family_sponsored": 2590,
+   "employment_based": 4044,
+   "diversity": 5775,
+   "refugee_asylee": 5476,
+   "other": 49
+  },
+  "United Arab Emirates": {
+   "total": 5390,
+   "immediate_relatives": 1129,
+   "family_sponsored": 553,
+   "employment_based": 2571,
+   "diversity": 460,
+   "refugee_asylee": 438,
+   "other": 239
+  },
+  "United Kingdom": {
+   "total": 27883,
+   "immediate_relatives": 14414,
+   "family_sponsored": 1153,
+   "employment_based": 11996,
+   "diversity": 145,
+   "refugee_asylee": 76,
+   "other": 99
+  },
+  "United States": {
+   "total": 728,
+   "immediate_relatives": 436,
+   "family_sponsored": 29,
+   "employment_based": 96,
+   "diversity": 14,
+   "refugee_asylee": 61,
+   "other": 102
+  },
+  "Uruguay": {
+   "total": 2691,
+   "immediate_relatives": 2072,
+   "family_sponsored": 81,
+   "employment_based": 358,
+   "diversity": 20,
+   "refugee_asylee": 138,
+   "other": 30
+  },
+  "Uzbekistan": {
+   "total": 15599,
+   "immediate_relatives": 3757,
+   "family_sponsored": 3283,
+   "employment_based": 546,
+   "diversity": 7237,
+   "refugee_asylee": 693,
+   "other": 83
+  },
+  "Venezuela": {
+   "total": 57955,
+   "immediate_relatives": 28523,
+   "family_sponsored": 2609,
+   "employment_based": 9147,
+   "diversity": 1067,
+   "refugee_asylee": 16530,
+   "other": 79
+  },
+  "Vietnam": {
+   "total": 99505,
+   "immediate_relatives": 41836,
+   "family_sponsored": 45599,
+   "employment_based": 11155,
+   "diversity": 4,
+   "refugee_asylee": 319,
+   "other": 602
+  },
+  "Virgin Islands, British": {
+   "total": 135,
+   "immediate_relatives": 98,
+   "family_sponsored": 10,
+   "employment_based": 0,
+   "diversity": 0,
+   "refugee_asylee": 0,
+   "other": 0
+  },
+  "Yemen": {
+   "total": 17278,
+   "immediate_relatives": 10005,
+   "family_sponsored": 4393,
+   "employment_based": 572,
+   "diversity": 1980,
+   "refugee_asylee": 180,
+   "other": 10
+  },
+  "Zambia": {
+   "total": 1455,
+   "immediate_relatives": 743,
+   "family_sponsored": 62,
+   "employment_based": 203,
+   "diversity": 96,
+   "refugee_asylee": 331,
+   "other": 0
+  },
+  "Zimbabwe": {
+   "total": 4553,
+   "immediate_relatives": 1204,
+   "family_sponsored": 199,
+   "employment_based": 2473,
+   "diversity": 336,
+   "refugee_asylee": 313,
+   "other": 18
+  }
+ },
+ "source": "DHS Office of Homeland Security Statistics, Yearbook of Immigration Statistics, Table 10, FY2022-FY2024 (three most recent published years at time of writing)."
+}
