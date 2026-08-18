@@ -157,6 +157,7 @@
   </div>
   <nav>
     <a href="index.html" class="current">Map: who would qualify</a>
+    <a href="visa-reallocation.html">Visa category reallocation</a>
     <a href="full-list.html">Complete data table</a>
   </nav>
 </header>
@@ -168,7 +169,6 @@
     <button data-mode="gdp" class="active">GDP per capita</button>
     <button data-mode="income">Income generated</button>
     <button data-mode="crime">Low institutionalization</button>
-    <button data-mode="visa">Visa categories</button>
   </div>
 
   <div class="mode-desc" id="mode-desc"></div>
@@ -195,19 +195,15 @@
 <script>
 const paths = {
   gdp: "country_gdp.json",
-  buckets: "country_buckets.json",
-  visa: "data/visa_categories.json"
+  buckets: "country_buckets.json"
 };
 
-let GDP = {}, BUCKETS = {}, VISA = null;
+let GDP = {}, BUCKETS = {};
 let mode = "gdp";
 let gdpMin = 0;
 let selMin = 20000;   // income threshold ($) or crime threshold (per 100k), meaning depends on mode
-let visaSliders = {}; // category key -> current slider value (visa mode)
-const VISA_CATS = ["immediate_relatives","family_sponsored","employment_based","diversity","refugee_asylee"];
 let countrySel = null;
 let byTopoName = {};   // topo feature name -> our country label(s)
-let byTopoNameVisa = {}; // topo feature name -> DHS visa country label
 
 const TOTAL_GROUPS = 20; // 2 sex x 5 education x 2 age buckets
 
@@ -243,7 +239,7 @@ function buildControls(){
     });
     if(selMin < 1000) selMin = 20000;
     updateSelVal();
-  } else if(mode === "crime"){
+  } else {
     desc.innerHTML = "Pick a maximum <b>institutionalization rate</b> (per 100,000, ages 60 and under). Countries are shaded by how many groups fall at or below that rate &mdash; darker means more low-institutionalization groups represented. Click a country to see which groups.";
     c.innerHTML = `
       <div class="control-row">
@@ -256,48 +252,7 @@ function buildControls(){
       selMin = +e.target.value; updateSelVal(); render();
     });
     updateSelVal();
-  } else if(mode === "visa"){
-    desc.innerHTML = "Separate dataset: DHS Yearbook lawful permanent resident admissions, pooled FY2022&ndash;FY2024. Set each category to any level between zero and its actual pooled total &mdash; countries are shaded by how many visas they'd receive at these levels, distributed using each category's real historical country shares. Drag family-sponsored to zero to see a repeal scenario directly. Click a country for the category breakdown.";
-    if(!VISA){ c.innerHTML = "<div style='font-size:12.5px;color:var(--muted);'>Visa data not loaded.</div>"; return; }
-    let html = "";
-    VISA_CATS.forEach(key=>{
-      const max = VISA.category_totals[key];
-      const label = VISA.category_labels[key];
-      html += `
-      <div class="control-row">
-        <label for="visa-${key}">${label}</label>
-        <input type="range" id="visa-${key}" min="0" max="${max}" step="${Math.max(1, Math.round(max/500))}" value="${visaSliders[key]}">
-        <span class="val" id="visa-val-${key}"></span>
-      </div>`;
-    });
-    c.innerHTML = html;
-    VISA_CATS.forEach(key=>{
-      document.getElementById(`visa-${key}`).addEventListener("input", e=>{
-        visaSliders[key] = +e.target.value;
-        updateVisaVal(key); render();
-      });
-      updateVisaVal(key);
-    });
   }
-}
-function updateVisaVal(key){
-  const max = VISA.category_totals[key];
-  const v = visaSliders[key];
-  const pct = max > 0 ? Math.round((v/max)*100) : 0;
-  const el = document.getElementById(`visa-val-${key}`);
-  if(el) el.innerHTML = fmtNum(v) + ` <span style="color:var(--muted); font-size:11px;">(${pct}%)</span>`;
-}
-function fmtNum(v){ return Math.round(v).toLocaleString(); }
-function visaCountryTotal(country){
-  const rec = VISA.countries[country];
-  if(!rec) return null;
-  let sum = 0;
-  VISA_CATS.forEach(key=>{
-    const total = VISA.category_totals[key];
-    const share = total > 0 ? rec[key] / total : 0;
-    sum += share * visaSliders[key];
-  });
-  return sum;
 }
 function updateGdpVal(){
   document.getElementById("gdp-val").textContent = gdpMin===0 ? "Any" : fmtMoney(gdpMin);
@@ -320,12 +275,7 @@ function qualifyingGroups(country){
   return { reliable, qualifying };
 }
 
-function colorFor(country, maxVisaVal){
-  if(mode === "visa"){
-    const val = visaCountryTotal(country);
-    if(val === null || val <= 0) return { fill:"no-data" };
-    return { fill: rampVisa(val, maxVisaVal) };
-  }
+function colorFor(country){
   const g = GDP[country];
   if(!g || g.topo === null) return { fill:"no-data" };
   if(mode === "gdp"){
@@ -348,28 +298,16 @@ function rampGdp(v){
   const i = Math.min(gdpRampColors.length-1, Math.floor((capped/100000)*gdpRampColors.length));
   return gdpRampColors[Math.max(0,i)];
 }
-function rampVisa(v, max){
-  if(!max || max <= 0) return rampColors[0];
-  const i = Math.min(rampColors.length-1, Math.floor((v/max)*rampColors.length));
-  return rampColors[Math.max(0,i)];
-}
 
 function render(){
   if(!countrySel) return;
-  let maxVisaVal = 0;
-  if(mode === "visa" && VISA){
-    Object.keys(VISA.countries).forEach(c=>{
-      const v = visaCountryTotal(c);
-      if(v !== null && v > maxVisaVal) maxVisaVal = v;
-    });
-  }
   countrySel.each(function(d){
     const name = d.properties.name;
-    const label = mode === "visa" ? byTopoNameVisa[name] : byTopoName[name];
+    const label = byTopoName[name];
     const el = d3.select(this);
     el.classed("excluded", false).classed("no-data", false).style("fill", null);
     if(!label){ el.classed("no-data", true); return; }
-    const c = colorFor(label, maxVisaVal);
+    const c = colorFor(label);
     if(c.fill === "excluded") el.classed("excluded", true);
     else if(c.fill === "no-data") el.classed("no-data", true);
     else el.style("fill", c.fill);
@@ -384,10 +322,6 @@ function renderLegend(){
       <span><span class="swatch" style="background:${gdpRampColors[gdpRampColors.length-1]}"></span>Higher GDP per capita</span>
       <span><span class="swatch" style="background:#D8D2C2"></span>Below threshold</span>
       <span><span class="swatch" style="background:#E9E2D0"></span>No GDP data / not mapped</span>`;
-  } else if(mode === "visa"){
-    l.innerHTML = `
-      <span><span class="swatch" style="background:${rampColors[rampColors.length-1]}"></span>More modeled visas at current slider settings</span>
-      <span><span class="swatch" style="background:#E9E2D0"></span>Zero / no data / not mapped</span>`;
   } else {
     l.innerHTML = `
       <span><span class="swatch" style="background:${rampColors[rampColors.length-1]}"></span>More qualifying groups</span>
@@ -400,32 +334,6 @@ function showPanel(label){
   const sub = document.getElementById("panel-sub");
   const body = document.getElementById("panel-body");
   const g = GDP[label];
-
-  if(mode === "visa"){
-    const rec = VISA.countries[label];
-    title.textContent = label;
-    if(!rec){
-      sub.textContent = "";
-      body.className = "placeholder";
-      body.innerHTML = "No DHS LPR data for this entry.";
-      return;
-    }
-    const modeled = visaCountryTotal(label);
-    sub.textContent = `Modeled ${fmtNum(modeled)} at current slider settings (actual pooled total: ${fmtNum(rec.total)})`;
-    body.className = "";
-    let html = '<div class="manifest">';
-    VISA_CATS.forEach(key=>{
-      const catTotal = VISA.category_totals[key];
-      const share = catTotal > 0 ? rec[key] / catTotal : 0;
-      const modeledForCat = share * visaSliders[key];
-      html += `<div class="row qualify"><span class="label">${VISA.category_labels[key]}</span><span class="num">${fmtNum(modeledForCat)}</span></div>`;
-    });
-    html += `<div class="row no-qualify"><span class="label">Other / not classified (fixed, not slider-adjustable)</span><span class="num">${fmtNum(rec.other)}</span></div>`;
-    html += '</div>';
-    html += `<div class="unreliable-note">Pooled FY2022&ndash;FY2024 actual by category: ${VISA_CATS.map(k=>`${VISA.category_labels[k]} ${fmtNum(rec[k])}`).join(", ")}.</div>`;
-    body.innerHTML = html;
-    return;
-  }
 
   if(mode === "gdp"){
     title.textContent = label;
@@ -494,65 +402,14 @@ function buildTopoIndex(features){
   return mapped;
 }
 
-// DHS Yearbook country names that differ from the map topology's naming.
-// Anything not listed here is assumed to match directly (most DHS names are already standard).
-const VISA_TOPO_OVERRIDES = {
-  "Bahamas": "The Bahamas",
-  "China, People's Republic": "China",
-  "Congo, Democratic Republic": "Dem. Rep. Congo",
-  "Congo, Republic": "Congo",
-  "Cote d'Ivoire": "Ivory Coast",
-  "Czechia": "Czech Rep.",
-  "Gambia": "Gambia",
-  "Guinea-Bissau": "Guinea-Bissau",
-  "Iran": "Iran",
-  "Korea, North": "North Korea",
-  "Korea, South": "South Korea",
-  "Laos": "Laos",
-  "Micronesia, Federated States": "Federated States of Micronesia",
-  "Netherlands": "Netherlands",
-  "North Macedonia": "Macedonia",
-  "Russia": "Russia",
-  "Sao Tome and Principe": "São Tomé and Principe",
-  "Syria": "Syria",
-  "Taiwan": "Taiwan",
-  "Tanzania": "Tanzania",
-  "Trinidad and Tobago": "Trinidad and Tobago",
-  "United Kingdom": "United Kingdom",
-  "Virgin Islands, British": "British Virgin Islands"
-};
-
-function buildTopoIndexVisa(features){
-  const byName = {};
-  features.forEach(f=>{ byName[normalizeTopoName(f.properties.name)] = f.properties.name; });
-  const mapped = {};
-  const unmatched = [];
-  if(!VISA) return mapped;
-  Object.keys(VISA.countries).forEach(label=>{
-    const topoGuess = VISA_TOPO_OVERRIDES[label] || label;
-    const real = byName[normalizeTopoName(topoGuess)];
-    if(real){ mapped[real] = label; }
-    else unmatched.push(label + " -> tried '" + topoGuess + "'");
-  });
-  if(unmatched.length){
-    console.warn(`${unmatched.length} DHS countries didn't match the map topology (they'll show as no-data on the visa map; add entries to VISA_TOPO_OVERRIDES to fix):`, unmatched);
-  }
-  return mapped;
-}
-
 Promise.all([
   fetch(paths.gdp).then(r=>r.json()),
   fetch(paths.buckets).then(r=>r.json()),
-  fetch(paths.visa).then(r=>r.json()).catch(err=>{ console.warn("Visa data not loaded:", err); return null; }),
   fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(r=>r.json())
-]).then(([gdpData, bucketData, visaData, world])=>{
-  GDP = gdpData; BUCKETS = bucketData; VISA = visaData;
-  if(VISA){
-    VISA_CATS.forEach(key=> visaSliders[key] = VISA.category_totals[key]);
-  }
+]).then(([gdpData, bucketData, world])=>{
+  GDP = gdpData; BUCKETS = bucketData;
   const features = topojson.feature(world, world.objects.countries).features;
   byTopoName = buildTopoIndex(features);
-  byTopoNameVisa = buildTopoIndexVisa(features);
 
   const svg = d3.select("#map").append("svg").attr("viewBox","0 0 960 480").attr("width","100%").style("display","block").style("max-height","480px");
   const projection = d3.geoNaturalEarth1().scale(155).translate([480,240]);
@@ -562,12 +419,12 @@ Promise.all([
     .attr("class","country")
     .attr("d", path)
     .on("click", (event,d)=>{
-      const label = mode === "visa" ? byTopoNameVisa[d.properties.name] : byTopoName[d.properties.name];
+      const label = byTopoName[d.properties.name];
       if(label) showPanel(label);
     })
     .append("title");
   countrySel = svg.selectAll("path.country"); // re-select after appending title (keep chainable)
-  svg.selectAll("path.country").select("title").text(d=> (mode === "visa" ? byTopoNameVisa[d.properties.name] : byTopoName[d.properties.name]) || d.properties.name);
+  svg.selectAll("path.country").select("title").text(d=> byTopoName[d.properties.name] || d.properties.name);
 
   buildControls();
   render();
