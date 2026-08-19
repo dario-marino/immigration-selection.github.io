@@ -43,6 +43,7 @@
   tbody tr.unreliable{ color:var(--muted); font-style:italic; }
   .scroll{ max-height:70vh; overflow:auto; border:1.5px solid var(--ink); }
   thead th{ border-bottom:1.5px solid var(--ink); }
+  .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
 </style>
 </head>
 <body>
@@ -73,6 +74,8 @@
           <th data-key="mean_income">Mean income</th>
           <th data-key="institutionalization_per_100k_under60">Institutionalization /100k</th>
           <th data-key="gdp">Country GDP p.c.</th>
+          <th data-key="pisa">PISA score</th>
+          <th data-key="english_pct">English (% very well+)</th>
           <th data-key="reliable">Reliable</th>
         </tr>
       </thead>
@@ -86,6 +89,7 @@ let sortKey = "country", sortAsc = true;
 
 function fmt(v){ return v===null || v===undefined ? "\u2014" : v; }
 function fmtMoney(v){ return v===null||v===undefined ? "\u2014" : "$"+Math.round(v).toLocaleString(); }
+function fmtPct(v){ return v===null||v===undefined ? "\u2014" : v+"%"; }
 
 function render(){
   const q = document.getElementById("filter").value.trim().toLowerCase();
@@ -111,7 +115,7 @@ function render(){
     tr.innerHTML = `<td>${r.country}</td><td>${r.sex_label}</td><td>${r.educ_label}</td><td>${r.age_bucket}</td>
       <td>${r.n}</td><td>${r.weighted_population.toLocaleString()}</td>
       <td>${fmtMoney(r.mean_income)}</td><td>${fmt(r.institutionalization_per_100k_under60)}</td>
-      <td>${fmtMoney(r.gdp)}</td><td>${r.reliable ? "yes" : "no"}</td>`;
+      <td>${fmtMoney(r.gdp)}</td><td>${fmt(r.pisa)}</td><td>${fmtPct(r.english_pct)}</td><td>${r.reliable ? "yes" : "no"}</td>`;
     frag.appendChild(tr);
   });
   tbody.innerHTML = "";
@@ -138,7 +142,7 @@ fetch("data/full_list.json").then(r=>r.json()).then(data=>{
   DATA = data;
   render();
 }).catch(err=>{
-  document.getElementById("tbody").innerHTML = `<tr><td colspan="10">Could not load data: ${err}</td></tr>`;
+  document.getElementById("tbody").innerHTML = `<tr><td colspan="12">Could not load data: ${err}</td></tr>`;
 });
 </script>
 </body>

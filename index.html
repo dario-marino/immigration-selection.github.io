@@ -73,6 +73,7 @@
     gap:0;
     border:1.5px solid var(--ink);
     width:fit-content;
+    flex-wrap:wrap;
     margin-bottom:22px;
   }
   .modes button{
@@ -167,8 +168,10 @@
 
   <div class="modes" role="tablist">
     <button data-mode="gdp" class="active">GDP per capita</button>
+    <button data-mode="pisa">PISA scores</button>
     <button data-mode="income">Income generated</button>
     <button data-mode="crime">Low institutionalization</button>
+    <button data-mode="english">English proficiency</button>
   </div>
 
   <div class="mode-desc" id="mode-desc"></div>
@@ -183,36 +186,61 @@
     <div id="panel">
       <h3 id="panel-title">Click a country</h3>
       <div class="sub" id="panel-sub"></div>
-      <div id="panel-body" class="placeholder">Select a mode above, set a threshold, then click any country on the map to see exactly which sex &times; education &times; age-at-arrival groups from that country clear the bar.</div>
+      <div id="panel-body" class="placeholder">Select a mode above, set a threshold, then click any country on the map to see exactly which sex &times; education &times; age-at-arrival groups from that country clear the bar (or, for the GDP and PISA modes, the country-level figure itself).</div>
     </div>
   </div>
 </main>
 
 <footer>
-  Sex &times; education &times; age-at-arrival groups computed from IPUMS USA / American Community Survey microdata (person-weighted). Income is mean total personal income (IPUMS <code>INCTOT</code>). Institutionalization is the share of each group's ACS group-quarters population recorded in group quarters, per 100,000, restricted to ages 60 and under to reduce the elderly-care/nursing-home skew &mdash; ACS does not release which type of institution someone is in (correctional, mental health, and other institutional care are bundled together on the public file), so this is a proxy for institutionalization broadly, not a crime rate specifically. Groups built from fewer than 30 sampled records are marked unreliable and never count toward a country's qualifying total. GDP per capita is PPP, most recent year available; countries below a set threshold are shown in the excluded color regardless of group counts. See the <a href="full-list.html">complete table</a> for every group, every country, with reliability flags, or the <a href="visa-reallocation.html">visa category reallocation tool</a> for a separate, DHS-sourced view of actual LPR admissions by category and country.
+  Sex &times; education &times; age-at-arrival groups computed from IPUMS USA / American Community Survey microdata (person-weighted). Income is total personal income minus Social Security, public-assistance, and Supplemental Security income (IPUMS <code>INCTOT</code> net of <code>INCSS</code>, <code>INCWELFR</code>, <code>INCSUPP</code>), adjusted for inflation. Institutionalization is the share of each group's ACS group-quarters population recorded in group quarters, per 100,000, restricted to ages 60 and under to reduce the elderly-care/nursing-home skew &mdash; ACS does not release which type of institution someone is in (correctional, mental health, and other institutional care are bundled together on the public file), so this is a proxy for institutionalization broadly, not a crime rate specifically. English proficiency is the share of each group reporting they speak English "very well" or that English is their only language. Groups built from fewer than 30 sampled records are marked unreliable and never count toward a country's qualifying total. GDP per capita is PPP, most recent year available. PISA scores are each country's average of the math, reading, and science mean scores from its most recent testing cycle (2022 for most participants); OECD does not publish an official single combined score, so this average is an editorial convention. A handful of PISA participants are non-sovereign or partial entities shown separately from a broader country (Hong Kong, Macao, Chinese Taipei); mainland China has no standalone national PISA score in this dataset, and several large countries of origin (including India) do not currently participate in PISA at all &mdash; these show as no-data on the PISA map regardless of threshold, not as zero. For the GDP and PISA modes, countries below a set threshold are shown in the excluded color regardless of group counts. See the <a href="full-list.html">complete table</a> for every group, every country, with reliability flags, or the <a href="visa-reallocation.html">visa category reallocation tool</a> for a separate, DHS-sourced view of actual LPR admissions by category and country.
 </footer>
 
 <script>
 const paths = {
-  gdp: "country_gdp.json",
-  buckets: "country_buckets.json"
+  gdp: "data/country_gdp.json",
+  buckets: "data/country_buckets.json",
+  pisa: "data/country_pisa.json"
 };
 
-let GDP = {}, BUCKETS = {};
+let GDP = {}, BUCKETS = {}, PISA = {};
 let mode = "gdp";
+
+// Each mode keeps its own threshold state, rather than reusing one shared
+// variable across modes (the original GDP/income/crime code reused a
+// single "selMin" for both income and crime with a clamp-on-switch hack --
+// with five modes now, separate variables per mode are simpler and avoid
+// any cross-mode value bleed when you switch tabs).
 let gdpMin = 0;
-let selMin = 20000;   // income threshold ($) or crime threshold (per 100k), meaning depends on mode
+let pisaMin = 430;
+let incomeMin = 20000;
+let crimeMax = 300;
+let englishMin = 50;
+
 let countrySel = null;
-let byTopoName = {};   // topo feature name -> our country label(s)
+let byTopoNameGdp = {};   // topo feature name -> country label, built from country_gdp.json's "topo" field
+let byTopoNamePisa = {};  // same idea, built from country_pisa.json's own "topo" field (may cover a different/smaller set of countries)
 
 const TOTAL_GROUPS = 20; // 2 sex x 5 education x 2 age buckets
 
 function fmtMoney(v){ return "$" + Math.round(v).toLocaleString(); }
+function fmtScore(v){ return Math.round(v); }
+function fmtPct(v){ return Math.round(v) + "%"; }
+
+// Which topo index (map-shape lookup) applies to the current mode. GDP,
+// income, and crime/institutionalization modes are all keyed off the same
+// country_gdp.json-derived index (income/crime buckets use the exact same
+// country label strings as country_gdp.json). PISA gets its own index
+// since country_pisa.json covers a different set of countries and its
+// own "topo" field.
+function currentTopoIndex(){
+  return mode === "pisa" ? byTopoNamePisa : byTopoNameGdp;
+}
 
 function buildControls(){
   const c = document.getElementById("controls");
   const desc = document.getElementById("mode-desc");
   c.innerHTML = "";
+
   if(mode === "gdp"){
     desc.innerHTML = "A plain reference view: pick a minimum <b>country-of-origin GDP per capita</b> and see which countries clear it. No demographic data involved &mdash; this is the blunt, nationality-only version of a selection rule.";
     c.innerHTML = `
@@ -226,41 +254,74 @@ function buildControls(){
       updateGdpVal(); render();
     });
     updateGdpVal();
+
+  } else if(mode === "pisa"){
+    desc.innerHTML = "Another plain, nationality-only reference view, styled just like the GDP one: pick a minimum <b>average PISA score</b> (mean of math, reading, and science, most recent testing cycle available) for a country's 15-year-olds and see which countries clear it. No demographic data about individual immigrants is used here either &mdash; it's a proxy for a country's school system, not for any specific person from that country.";
+    c.innerHTML = `
+      <div class="control-row">
+        <label for="pisa-slider">Min. average PISA score</label>
+        <input type="range" id="pisa-slider" min="300" max="560" step="5" value="${pisaMin}">
+        <span class="val" id="pisa-val"></span>
+      </div>`;
+    document.getElementById("pisa-slider").addEventListener("input", e=>{
+      pisaMin = +e.target.value;
+      updatePisaVal(); render();
+    });
+    updatePisaVal();
+
   } else if(mode === "income"){
     desc.innerHTML = "Pick a minimum <b>mean personal income</b>. Countries are shaded by how many of their sex &times; education &times; age-at-arrival groups clear that bar &mdash; darker means more qualifying groups, regardless of what the country as a whole looks like. Click a country to see which groups.";
     c.innerHTML = `
       <div class="control-row">
         <label for="sel-slider">Min. income generated ($)</label>
-        <input type="range" id="sel-slider" min="0" max="120000" step="1000" value="${selMin}">
+        <input type="range" id="sel-slider" min="0" max="120000" step="1000" value="${incomeMin}">
         <span class="val" id="sel-val"></span>
       </div>`;
     document.getElementById("sel-slider").addEventListener("input", e=>{
-      selMin = +e.target.value; updateSelVal(); render();
+      incomeMin = +e.target.value; updateSelVal(); render();
     });
-    if(selMin < 1000) selMin = 20000;
     updateSelVal();
-  } else {
+
+  } else if(mode === "crime"){
     desc.innerHTML = "Pick a maximum <b>institutionalization rate</b> (per 100,000, ages 60 and under). Countries are shaded by how many groups fall at or below that rate &mdash; darker means more low-institutionalization groups represented. Click a country to see which groups.";
     c.innerHTML = `
       <div class="control-row">
         <label for="sel-slider">Max. institutionalization rate (per 100k)</label>
-        <input type="range" id="sel-slider" min="0" max="2000" step="25" value="${selMin>2000?300:selMin}">
+        <input type="range" id="sel-slider" min="0" max="2000" step="25" value="${crimeMax}">
         <span class="val" id="sel-val"></span>
       </div>`;
-    if(selMin > 2000 || selMin < 1000) selMin = 300;
     document.getElementById("sel-slider").addEventListener("input", e=>{
-      selMin = +e.target.value; updateSelVal(); render();
+      crimeMax = +e.target.value; updateSelVal(); render();
+    });
+    updateSelVal();
+
+  } else { // english
+    desc.innerHTML = "Pick a minimum share of a country's groups whose members report speaking English <b>\u201cvery well\u201d or better</b> (including English as their only language), per the ACS. Countries are shaded by how many groups clear that bar &mdash; darker means more qualifying groups. Click a country to see which groups.";
+    c.innerHTML = `
+      <div class="control-row">
+        <label for="sel-slider">Min. % speaking English very well+</label>
+        <input type="range" id="sel-slider" min="0" max="100" step="1" value="${englishMin}">
+        <span class="val" id="sel-val"></span>
+      </div>`;
+    document.getElementById("sel-slider").addEventListener("input", e=>{
+      englishMin = +e.target.value; updateSelVal(); render();
     });
     updateSelVal();
   }
 }
+
 function updateGdpVal(){
   document.getElementById("gdp-val").textContent = gdpMin===0 ? "Any" : fmtMoney(gdpMin);
+}
+function updatePisaVal(){
+  document.getElementById("pisa-val").textContent = fmtScore(pisaMin);
 }
 function updateSelVal(){
   const el = document.getElementById("sel-val");
   if(!el) return;
-  el.textContent = mode==="income" ? fmtMoney(selMin) : selMin + "/100k";
+  if(mode === "income") el.textContent = fmtMoney(incomeMin);
+  else if(mode === "english") el.textContent = fmtPct(englishMin);
+  else el.textContent = crimeMax + "/100k";
 }
 
 function qualifyingGroups(country){
@@ -268,20 +329,29 @@ function qualifyingGroups(country){
   const reliable = rows.filter(r=>r.reliable);
   let qualifying;
   if(mode === "income"){
-    qualifying = reliable.filter(r=> r.income !== null && r.income >= selMin);
-  } else {
-    qualifying = reliable.filter(r=> r.crime !== null && r.crime <= selMin);
+    qualifying = reliable.filter(r=> r.income !== null && r.income >= incomeMin);
+  } else if(mode === "english"){
+    qualifying = reliable.filter(r=> r.english !== null && r.english !== undefined && r.english >= englishMin);
+  } else { // crime
+    qualifying = reliable.filter(r=> r.crime !== null && r.crime <= crimeMax);
   }
   return { reliable, qualifying };
 }
 
 function colorFor(country){
-  const g = GDP[country];
-  if(!g || g.topo === null) return { fill:"no-data" };
   if(mode === "gdp"){
+    const g = GDP[country];
+    if(!g || g.topo === null) return { fill:"no-data" };
     if(g.gdp === null) return { fill:"no-data" };
-    return g.gdp >= gdpMin ? { fill: rampGdp(g.gdp) } : { fill: "excluded" };
+    return g.gdp >= gdpMin ? { fill: rampFor(g.gdp, 0, 100000, gdpRampColors) } : { fill: "excluded" };
   }
+  if(mode === "pisa"){
+    const p = PISA[country];
+    if(!p || p.pisa === null || p.pisa === undefined) return { fill:"no-data" };
+    return p.pisa >= pisaMin ? { fill: rampFor(p.pisa, 300, 560, gdpRampColors) } : { fill: "excluded" };
+  }
+  const g = GDP[country];
+  if(!g || g.topo === null) return { fill:"no-data" }; // income/crime/english still gate on the country being on the map at all, same as before
   const { qualifying } = qualifyingGroups(country);
   if(qualifying.length === 0) return { fill:"no-data" };
   return { fill: ramp(qualifying.length) };
@@ -293,14 +363,16 @@ function ramp(count){
   return rampColors[Math.max(0,i)];
 }
 const gdpRampColors = ["#EFE7C9","#E3D69E","#CBBE72","#B0A24F","#8F8536","#6E6A22"];
-function rampGdp(v){
-  const capped = Math.min(v, 100000);
-  const i = Math.min(gdpRampColors.length-1, Math.floor((capped/100000)*gdpRampColors.length));
-  return gdpRampColors[Math.max(0,i)];
+function rampFor(value, min, max, colors){
+  const capped = Math.max(min, Math.min(value, max));
+  const frac = (capped - min) / (max - min);
+  const i = Math.min(colors.length-1, Math.floor(frac * colors.length));
+  return colors[Math.max(0,i)];
 }
 
 function render(){
   if(!countrySel) return;
+  const byTopoName = currentTopoIndex();
   countrySel.each(function(d){
     const name = d.properties.name;
     const label = byTopoName[name];
@@ -317,11 +389,12 @@ function render(){
 
 function renderLegend(){
   const l = document.getElementById("legend");
-  if(mode === "gdp"){
+  if(mode === "gdp" || mode === "pisa"){
+    const higherLabel = mode === "gdp" ? "Higher GDP per capita" : "Higher PISA score";
     l.innerHTML = `
-      <span><span class="swatch" style="background:${gdpRampColors[gdpRampColors.length-1]}"></span>Higher GDP per capita</span>
+      <span><span class="swatch" style="background:${gdpRampColors[gdpRampColors.length-1]}"></span>${higherLabel}</span>
       <span><span class="swatch" style="background:#D8D2C2"></span>Below threshold</span>
-      <span><span class="swatch" style="background:#E9E2D0"></span>No GDP data / not mapped</span>`;
+      <span><span class="swatch" style="background:#E9E2D0"></span>No data / not mapped</span>`;
   } else {
     l.innerHTML = `
       <span><span class="swatch" style="background:${rampColors[rampColors.length-1]}"></span>More qualifying groups</span>
@@ -333,15 +406,26 @@ function showPanel(label){
   const title = document.getElementById("panel-title");
   const sub = document.getElementById("panel-sub");
   const body = document.getElementById("panel-body");
-  const g = GDP[label];
 
   if(mode === "gdp"){
+    const g = GDP[label];
     title.textContent = label;
     sub.textContent = g && g.gdp !== null ? "GDP per capita (PPP)" : "No GDP figure available";
     body.className = "";
     body.innerHTML = g && g.gdp !== null
       ? `<div class="stat">${fmtMoney(g.gdp)}<br><span style="color:var(--muted); font-size:11px;">${g.gdp >= gdpMin ? "Clears the current threshold" : "Below the current threshold"}</span></div>`
       : `<div class="placeholder">No GDP figure available for this entry (likely a historical or aggregate category).</div>`;
+    return;
+  }
+
+  if(mode === "pisa"){
+    const p = PISA[label];
+    title.textContent = label;
+    sub.textContent = p && p.pisa !== null && p.pisa !== undefined ? "Average PISA score (math/reading/science, latest cycle)" : "No PISA figure available";
+    body.className = "";
+    body.innerHTML = p && p.pisa !== null && p.pisa !== undefined
+      ? `<div class="stat">${fmtScore(p.pisa)}<br><span style="color:var(--muted); font-size:11px;">${p.pisa >= pisaMin ? "Clears the current threshold" : "Below the current threshold"}</span></div>`
+      : `<div class="placeholder">No PISA figure available for this entry &mdash; either this country doesn't currently participate in PISA (e.g. India), or, as with mainland China, OECD does not publish one standalone national score for it.</div>`;
     return;
   }
 
@@ -357,19 +441,21 @@ function showPanel(label){
   title.textContent = label;
   sub.textContent = `${qualifying.length} of ${reliable.length} reliable groups qualify (${rows.length - reliable.length} unreliable, excluded)`;
   body.className = "";
-  const metricLabel = mode === "income" ? "income" : "per 100k";
+
   const sorted = rows.slice().sort((a,b)=>{
-    const av = mode==="income" ? (a.income??-1) : (a.crime??1e9);
-    const bv = mode==="income" ? (b.income??-1) : (b.crime??1e9);
-    return mode==="income" ? bv-av : av-bv;
+    const av = mode==="income" ? (a.income??-1) : mode==="english" ? (a.english??-1) : (a.crime??1e9);
+    const bv = mode==="income" ? (b.income??-1) : mode==="english" ? (b.english??-1) : (b.crime??1e9);
+    return (mode==="income" || mode==="english") ? bv-av : av-bv;
   });
   let html = '<div class="manifest">';
   sorted.forEach(r=>{
-    const val = mode==="income" ? r.income : r.crime;
-    const valStr = val===null ? "n/a" : (mode==="income" ? fmtMoney(val) : val+"/100k");
+    const val = mode==="income" ? r.income : mode==="english" ? r.english : r.crime;
+    const valStr = (val===null || val===undefined) ? "n/a" : (mode==="income" ? fmtMoney(val) : mode==="english" ? fmtPct(val) : val+"/100k");
     let cls = "no-qualify";
     if(r.reliable){
-      const qualifies = mode==="income" ? (val!==null && val>=selMin) : (val!==null && val<=selMin);
+      const qualifies = mode==="income" ? (val!==null && val>=incomeMin)
+                       : mode==="english" ? (val!==null && val!==undefined && val>=englishMin)
+                       : (val!==null && val<=crimeMax);
       cls = qualifies ? "qualify" : "no-qualify";
     }
     const flag = r.reliable ? "" : " (n too small)";
@@ -384,12 +470,12 @@ function showPanel(label){
 
 function normalizeTopoName(n){ return n.trim().toLowerCase(); }
 
-function buildTopoIndex(features){
+function buildTopoIndex(features, dataDict, datasetLabel){
   const byName = {};
   features.forEach(f=>{ byName[normalizeTopoName(f.properties.name)] = f.properties.name; });
   const mapped = {};
   const unmatched = [];
-  Object.entries(GDP).forEach(([label, g])=>{
+  Object.entries(dataDict).forEach(([label, g])=>{
     if(!g.topo) return;
     const key = normalizeTopoName(g.topo);
     const real = byName[key];
@@ -397,7 +483,7 @@ function buildTopoIndex(features){
     else unmatched.push(label + " -> " + g.topo);
   });
   if(unmatched.length){
-    console.warn("Country name mismatches between country_gdp.json and the map topology (fix the 'topo' field for these):", unmatched);
+    console.warn(`Country name mismatches between ${datasetLabel} and the map topology (fix the 'topo' field for these):`, unmatched);
   }
   return mapped;
 }
@@ -405,11 +491,13 @@ function buildTopoIndex(features){
 Promise.all([
   fetch(paths.gdp).then(r=>r.json()),
   fetch(paths.buckets).then(r=>r.json()),
+  fetch(paths.pisa).then(r=>r.json()),
   fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(r=>r.json())
-]).then(([gdpData, bucketData, world])=>{
-  GDP = gdpData; BUCKETS = bucketData;
+]).then(([gdpData, bucketData, pisaData, world])=>{
+  GDP = gdpData; BUCKETS = bucketData; PISA = pisaData;
   const features = topojson.feature(world, world.objects.countries).features;
-  byTopoName = buildTopoIndex(features);
+  byTopoNameGdp = buildTopoIndex(features, GDP, "country_gdp.json");
+  byTopoNamePisa = buildTopoIndex(features, PISA, "country_pisa.json");
 
   const svg = d3.select("#map").append("svg").attr("viewBox","0 0 960 480").attr("width","100%").style("display","block").style("max-height","480px");
   const projection = d3.geoNaturalEarth1().scale(155).translate([480,240]);
@@ -419,12 +507,12 @@ Promise.all([
     .attr("class","country")
     .attr("d", path)
     .on("click", (event,d)=>{
-      const label = byTopoName[d.properties.name];
+      const label = currentTopoIndex()[d.properties.name];
       if(label) showPanel(label);
     })
     .append("title");
   countrySel = svg.selectAll("path.country"); // re-select after appending title (keep chainable)
-  svg.selectAll("path.country").select("title").text(d=> byTopoName[d.properties.name] || d.properties.name);
+  svg.selectAll("path.country").select("title").text(d=> currentTopoIndex()[d.properties.name] || d.properties.name);
 
   buildControls();
   render();
@@ -443,7 +531,12 @@ document.querySelectorAll(".modes button").forEach(btn=>{
     document.getElementById("panel-title").textContent = "Click a country";
     document.getElementById("panel-sub").textContent = "";
     document.getElementById("panel-body").className = "placeholder";
-    document.getElementById("panel-body").textContent = "Click any country to see its group-level breakdown for the current mode and threshold.";
+    document.getElementById("panel-body").textContent = "Click any country to see its group-level breakdown for the current mode and threshold (or, in GDP/PISA mode, the country-level figure itself).";
+    // Tooltips (the <title> element per country) depend on which topo
+    // index is active, so refresh them on every mode switch.
+    if(countrySel){
+      countrySel.select("title").text(d=> currentTopoIndex()[d.properties.name] || d.properties.name);
+    }
   });
 });
 </script>

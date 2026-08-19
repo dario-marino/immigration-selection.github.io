@@ -1,0 +1,354 @@
+{
+ "Algeria": {
+  "pisa": 361.7,
+  "topo": "Algeria"
+ },
+ "Trinidad and Tobago": {
+  "pisa": 423.0,
+  "topo": "Trinidad and Tobago"
+ },
+ "Tunisia": {
+  "pisa": 371.4,
+  "topo": "Tunisia"
+ },
+ "Bosnia and Herzegovina": {
+  "pisa": 402.6,
+  "topo": "Bosnia and Herzegovina"
+ },
+ "Russia": {
+  "pisa": 481.3,
+  "topo": "Russia"
+ },
+ "Luxembourg": {
+  "pisa": 476.7,
+  "topo": "Luxembourg"
+ },
+ "Lebanon": {
+  "pisa": 376.8,
+  "topo": "Lebanon"
+ },
+ "Belarus": {
+  "pisa": 472.3,
+  "topo": "Belarus"
+ },
+ "Poland": {
+  "pisa": 492.3,
+  "topo": "Poland"
+ },
+ "Paraguay": {
+  "pisa": 359.7,
+  "topo": "Paraguay"
+ },
+ "Hungary": {
+  "pisa": 477.2,
+  "topo": "Hungary"
+ },
+ "Philippines": {
+  "pisa": 352.5,
+  "topo": "Philippines"
+ },
+ "Peru": {
+  "pisa": 402.4,
+  "topo": "Peru"
+ },
+ "Ireland": {
+  "pisa": 503.8,
+  "topo": "Ireland"
+ },
+ "Israel": {
+  "pisa": 465.5,
+  "topo": "Israel"
+ },
+ "Hong Kong": {
+  "pisa": 520.2,
+  "topo": null
+ },
+ "Qatar": {
+  "pisa": 421.9,
+  "topo": "Qatar"
+ },
+ "Mongolia": {
+  "pisa": 405.1,
+  "topo": "Mongolia"
+ },
+ "Moldova": {
+  "pisa": 414.0,
+  "topo": "Moldova"
+ },
+ "Montenegro": {
+  "pisa": 404.6,
+  "topo": "Montenegro"
+ },
+ "Macao": {
+  "pisa": 535.1,
+  "topo": "Macao"
+ },
+ "Malaysia": {
+  "pisa": 404.4,
+  "topo": "Malaysia"
+ },
+ "Malta": {
+  "pisa": 459.0,
+  "topo": "Malta"
+ },
+ "Mexico": {
+  "pisa": 406.8,
+  "topo": "Mexico"
+ },
+ "Lithuania": {
+  "pisa": 477.1,
+  "topo": "Lithuania"
+ },
+ "United States": {
+  "pisa": 489.4,
+  "topo": "United States"
+ },
+ "Vietnam": {
+  "pisa": 467.9,
+  "topo": "Vietnam"
+ },
+ "Uzbekistan": {
+  "pisa": 351.4,
+  "topo": "Uzbekistan"
+ },
+ "Uruguay": {
+  "pisa": 424.8,
+  "topo": "Uruguay"
+ },
+ "Argentina": {
+  "pisa": 394.8,
+  "topo": "Argentina"
+ },
+ "Albania": {
+  "pisa": 367.5,
+  "topo": "Albania"
+ },
+ "Indonesia": {
+  "pisa": 369.0,
+  "topo": "Indonesia"
+ },
+ "Iceland": {
+  "pisa": 447.3,
+  "topo": "Iceland"
+ },
+ "Palestine": {
+  "pisa": 361.2,
+  "topo": "Palestine"
+ },
+ "Italy": {
+  "pisa": 476.8,
+  "topo": "Italy"
+ },
+ "Japan": {
+  "pisa": 532.7,
+  "topo": "Japan"
+ },
+ "New Zealand": {
+  "pisa": 494.7,
+  "topo": "New Zealand"
+ },
+ "Jamaica": {
+  "pisa": 396.7,
+  "topo": "Jamaica"
+ },
+ "Panama": {
+  "pisa": 378.8,
+  "topo": "Panama"
+ },
+ "Netherlands": {
+  "pisa": 480.1,
+  "topo": "Netherlands"
+ },
+ "Latvia": {
+  "pisa": 483.9,
+  "topo": "Latvia"
+ },
+ "Morocco": {
+  "pisa": 356.5,
+  "topo": "Morocco"
+ },
+ "Kosovo": {
+  "pisa": 351.4,
+  "topo": "Kosovo"
+ },
+ "Kazakhstan": {
+  "pisa": 411.6,
+  "topo": "Kazakhstan"
+ },
+ "Jordan": {
+  "pisa": 359.3,
+  "topo": "Jordan"
+ },
+ "Norway": {
+  "pisa": 474.4,
+  "topo": "Norway"
+ },
+ "North Macedonia": {
+  "pisa": 375.7,
+  "topo": "North Macedonia"
+ },
+ "Saudi Arabia": {
+  "pisa": 387.2,
+  "topo": "Saudi Arabia"
+ },
+ "Germany": {
+  "pisa": 482.3,
+  "topo": "Germany"
+ },
+ "Guatemala": {
+  "pisa": 363.8,
+  "topo": "Guatemala"
+ },
+ "Greece": {
+  "pisa": 436.5,
+  "topo": "Greece"
+ },
+ "Portugal": {
+  "pisa": 477.6,
+  "topo": "Portugal"
+ },
+ "Slovenia": {
+  "pisa": 484.3,
+  "topo": "Slovenia"
+ },
+ "Sweden": {
+  "pisa": 487.4,
+  "topo": "Sweden"
+ },
+ "Colombia": {
+  "pisa": 400.8,
+  "topo": "Colombia"
+ },
+ "Canada": {
+  "pisa": 506.4,
+  "topo": "Canada"
+ },
+ "Chile": {
+  "pisa": 434.4,
+  "topo": "Chile"
+ },
+ "Spain": {
+  "pisa": 477.3,
+  "topo": "Spain"
+ },
+ "El Salvador": {
+  "pisa": 360.5,
+  "topo": "El Salvador"
+ },
+ "Serbia": {
+  "pisa": 442.6,
+  "topo": "Serbia"
+ },
+ "Dominican Republic": {
+  "pisa": 350.3,
+  "topo": "Dominican Rep."
+ },
+ "Denmark": {
+  "pisa": 490.6,
+  "topo": "Denmark"
+ },
+ "Czechia": {
+  "pisa": 491.1,
+  "topo": "Czechia"
+ },
+ "Estonia": {
+  "pisa": 515.6,
+  "topo": "Estonia"
+ },
+ "Singapore": {
+  "pisa": 559.6,
+  "topo": null
+ },
+ "Georgia": {
+  "pisa": 382.7,
+  "topo": "Georgia"
+ },
+ "France": {
+  "pisa": 478.3,
+  "topo": "France"
+ },
+ "Romania": {
+  "pisa": 427.9,
+  "topo": "Romania"
+ },
+ "Finland": {
+  "pisa": 495.1,
+  "topo": "Finland"
+ },
+ "Croatia": {
+  "pisa": 473.8,
+  "topo": "Croatia"
+ },
+ "Costa Rica": {
+  "pisa": 403.6,
+  "topo": "Costa Rica"
+ },
+ "Cyprus": {
+  "pisa": 403.4,
+  "topo": "Cyprus"
+ },
+ "South Korea": {
+  "pisa": 523.5,
+  "topo": "South Korea"
+ },
+ "Slovakia": {
+  "pisa": 457.7,
+  "topo": "Slovakia"
+ },
+ "Brunei": {
+  "pisa": 439.1,
+  "topo": "Brunei"
+ },
+ "Turkey": {
+  "pisa": 461.7,
+  "topo": "Turkey"
+ },
+ "Taiwan": {
+  "pisa": 533.2,
+  "topo": null
+ },
+ "Switzerland": {
+  "pisa": 497.9,
+  "topo": "Switzerland"
+ },
+ "Cambodia": {
+  "pisa": 337.4,
+  "topo": "Cambodia"
+ },
+ "United Arab Emirates": {
+  "pisa": 426.8,
+  "topo": null
+ },
+ "United Kingdom": {
+  "pisa": 494.3,
+  "topo": "United Kingdom"
+ },
+ "Belgium": {
+  "pisa": 486.3,
+  "topo": "Belgium"
+ },
+ "Brazil": {
+  "pisa": 397.3,
+  "topo": "Brazil"
+ },
+ "Thailand": {
+  "pisa": 394.0,
+  "topo": "Thailand"
+ },
+ "Bulgaria": {
+  "pisa": 414.2,
+  "topo": "Bulgaria"
+ },
+ "Austria": {
+  "pisa": 486.3,
+  "topo": "Austria"
+ },
+ "Ukraine": {
+  "pisa": 439.5,
+  "topo": "Ukraine"
+ },
+ "Australia": {
+  "pisa": 497.4,
+  "topo": "Australia"
+ }
+}
