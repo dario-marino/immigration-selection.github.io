@@ -236,7 +236,7 @@ function buildControls(){
     document.getElementById("pisa-slider").addEventListener("input", e=>{ pisaMin = +e.target.value; updatePisaVal(); render(); });
     updatePisaVal();
   } else if(mode === "income"){
-    desc.innerHTML = "Set a minimum <b>average income earned in the US</b>. Each country is shaded by how many of its immigrant profiles (sex &times; education &times; age at arrival) meet that bar. Darker means more profiles qualify. Click a country to see which ones.";
+    desc.innerHTML = "Set a minimum <b>average income earned in the US</b>. Each country is shaded by how many of its immigrant profiles (by sex, education, and age at arrival) meet that bar. Darker means more profiles qualify. Click a country to see which ones.";
     c.innerHTML = `<div class="control-row"><label for="sel-slider">Min. income earned in the US ($)</label>
       <input type="range" id="sel-slider" min="0" max="120000" step="1000" value="${incomeMin}"><span class="val" id="sel-val"></span></div>${benchRow("income","sel-slider")}`;
     document.getElementById("sel-slider").addEventListener("input", e=>{ incomeMin = +e.target.value; updateSelVal(); render(); });
