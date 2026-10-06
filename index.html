@@ -32,6 +32,12 @@
   header.masthead nav a:hover{ color:var(--brass); border-color:var(--brass); }
   header.masthead nav a.current{ color:var(--ink); border-color:var(--ink); font-weight:600; }
   main{ max-width:1180px; margin:0 auto; padding:28px 32px 40px; }
+
+  .explainer-top{ max-width:820px; margin:0 0 36px; padding-bottom:28px; border-bottom:1.5px solid var(--ink); }
+  .explainer-top h2{ font-family:'Source Serif 4',serif; font-size:24px; margin:0 0 12px; }
+  .explainer-top p{ font-size:15px; line-height:1.65; color:var(--ink); margin:0 0 14px; }
+  .explainer-top p:last-child{ margin-bottom:0; }
+
   .mode-groups{ display:flex; gap:28px; flex-wrap:wrap; margin-bottom:22px; }
   .mode-group-label{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.12em; color:var(--brass); margin-bottom:6px; }
   .modes{ display:flex; border:1.5px solid var(--ink); width:fit-content; flex-wrap:wrap; }
@@ -99,6 +105,14 @@
 
 <main>
   <h2 class="sr-only">Immigrant selection map explorer</h2>
+
+  <section class="explainer-top" id="explainer">
+    <h2>What this tool shows</h2>
+    <p>Every immigration system makes a choice about who gets in. This tool lets you try out different rules and see which immigrants would qualify under each one.</p>
+    <p>It uses data on more than one million immigrants who live in the United States today, drawn from the Census Bureau&rsquo;s American Community Survey. We split each country&rsquo;s immigrants into <b>profiles</b> based on sex, education (five levels, from less than high school to a graduate degree), and age when they arrived in the US (before 30, or at 30 or older). For example, one profile is &ldquo;Italian women with a bachelor&rsquo;s degree who arrived before age 30.&rdquo; Each country has up to 20 profiles.</p>
+    <p>There are two kinds of screens. <b>Home-country screens</b> (GDP per capita and PISA test scores) describe the country itself. <b>US-outcome screens</b> (income, institutionalization, and English) describe how people from that country are actually doing <i>after arriving in the United States</i>, not conditions back home. When you set a bar, the map shades each country by how many of its profiles clear it, and clicking a country shows exactly which profiles pass.</p>
+  </section>
+
   <div class="mode-groups">
     <div>
       <div class="mode-group-label">Screen by home country</div>
@@ -132,15 +146,6 @@
 </main>
 
 <div class="below">
-  <!-- ===================== EXPLAINER (replace with final text) ===================== -->
-  <section id="explainer">
-    <h2>What this tool shows</h2>
-    <p>Every immigration system makes a choice about who gets in. This tool lets you try out different rules and see which immigrants would qualify under each one.</p>
-    <p>It uses data on more than one million immigrants who live in the United States today, drawn from the Census Bureau&rsquo;s American Community Survey. We split each country&rsquo;s immigrants into <b>profiles</b> based on sex, education (five levels, from less than high school to a graduate degree), and age when they arrived in the US (before 30, or at 30 or older). For example, one profile is &ldquo;Italian women with a bachelor&rsquo;s degree who arrived before age 30.&rdquo; Each country has up to 20 profiles.</p>
-    <p>There are two kinds of screens. <b>Home-country screens</b> (GDP per capita and PISA test scores) describe the country itself. <b>US-outcome screens</b> (income, institutionalization, and English) describe how people from that country are actually doing <i>after arriving in the United States</i>, not conditions back home. When you set a bar, the map shades each country by how many of its profiles clear it, and clicking a country shows exactly which profiles pass.</p>
-  </section>
-  <!-- ============================================================================== -->
-
   <section id="why-measures">
     <h2>Why these measures</h2>
     <ul>
