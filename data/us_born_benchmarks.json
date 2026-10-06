@@ -1,0 +1,113 @@
+{
+ "source": "IPUMS ACS 2020-2024 5-year, US-born (BPL<100), same definitions as country_buckets.json",
+ "overall": {
+  "n": 13881325,
+  "pop": 281896306,
+  "income": 52352,
+  "institutionalization_per_100k": 868.9,
+  "english_pct": 92.0
+ },
+ "overall_adults_18plus": {
+  "n": 10972029,
+  "pop": 212272174,
+  "income": 55277,
+  "institutionalization_per_100k": 1221.0,
+  "english_pct": 98.8
+ },
+ "by_group": [
+  {
+   "sex": "Men",
+   "educ": "Associate's degree / some college",
+   "n": 822652,
+   "pop": 15722559,
+   "income": 57311,
+   "institutionalization_per_100k": 1253.1,
+   "english_pct": 98.9
+  },
+  {
+   "sex": "Men",
+   "educ": "Bachelor's degree",
+   "n": 1053506,
+   "pop": 20996941,
+   "income": 104093,
+   "institutionalization_per_100k": 186.7,
+   "english_pct": 99.2
+  },
+  {
+   "sex": "Men",
+   "educ": "Graduate degree",
+   "n": 626320,
+   "pop": 11473070,
+   "income": 147506,
+   "institutionalization_per_100k": 112.3,
+   "english_pct": 99.3
+  },
+  {
+   "sex": "Men",
+   "educ": "High school diploma",
+   "n": 1629973,
+   "pop": 31588437,
+   "income": 40582,
+   "institutionalization_per_100k": 3181.8,
+   "english_pct": 98.6
+  },
+  {
+   "sex": "Men",
+   "educ": "Less than high school",
+   "n": 2724334,
+   "pop": 60013088,
+   "income": 34568,
+   "institutionalization_per_100k": 1343.2,
+   "english_pct": 82.2
+  },
+  {
+   "sex": "Women",
+   "educ": "Associate's degree / some college",
+   "n": 990005,
+   "pop": 18704457,
+   "income": 35189,
+   "institutionalization_per_100k": 224.5,
+   "english_pct": 99.1
+  },
+  {
+   "sex": "Women",
+   "educ": "Bachelor's degree",
+   "n": 1181088,
+   "pop": 23244179,
+   "income": 62360,
+   "institutionalization_per_100k": 49.3,
+   "english_pct": 99.3
+  },
+  {
+   "sex": "Women",
+   "educ": "Graduate degree",
+   "n": 762993,
+   "pop": 14144350,
+   "income": 89392,
+   "institutionalization_per_100k": 34.1,
+   "english_pct": 99.4
+  },
+  {
+   "sex": "Women",
+   "educ": "High school diploma",
+   "n": 1504600,
+   "pop": 28488718,
+   "income": 22759,
+   "institutionalization_per_100k": 599.5,
+   "english_pct": 98.7
+  },
+  {
+   "sex": "Women",
+   "educ": "Less than high school",
+   "n": 2585854,
+   "pop": 57520507,
+   "income": 20753,
+   "institutionalization_per_100k": 244.5,
+   "english_pct": 82.3
+  }
+ ],
+ "gdp_ppp": {
+  "value": 90027,
+  "year": 2025
+ }
+}
