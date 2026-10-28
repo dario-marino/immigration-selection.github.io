@@ -58,11 +58,11 @@
   @media (max-width:720px){ .bench,.control-note{ padding-left:0; } }
   .layout{ display:flex; gap:22px; align-items:flex-start; flex-wrap:wrap; }
   #map-wrap{ flex:1 1 640px; min-width:320px; }
-  #map{ width:100%; border:1px solid var(--line); background:#E4E8F4; }
+  #map{ width:100%; border:1px solid var(--line); background:#EDEBE6; }
   #map path.country{ cursor:pointer; stroke:rgba(32,36,43,0.35); stroke-width:0.5px; }
   #map path.country:hover{ stroke:var(--ink); stroke-width:1.2px; }
   #map path.country.excluded{ fill:#B9C0DC; }
-  #map path.country.no-data{ fill:#E4E8F4; }
+  #map path.country.no-data{ fill:#EDEBE6; }
   .legend{ display:flex; gap:18px; font-size:12px; color:var(--ink-soft); margin-top:10px; flex-wrap:wrap; }
   .legend span{ display:inline-flex; align-items:center; gap:5px; }
   .swatch{ width:11px; height:11px; display:inline-block; border:1px solid rgba(0,0,0,0.15); }
@@ -292,8 +292,10 @@ function qualifyingGroups(country){
   else qualifying = reliable.filter(r=> r.crime !== null && r.crime <= crimeMax);
   return { reliable, qualifying };
 }
-const rampColors = ["#C5CEF6","#9DADF0","#6F86E8","#4A63E0","#2C48DC","#1F38BC"];
-function ramp(count){ const i = Math.min(rampColors.length-1, Math.floor((count/TOTAL_GROUPS)*rampColors.length)); return rampColors[Math.max(0,i)]; }
+const rampColors = ["#9FDCFF","#4DB8FF","#2C7BE5","#2C48DC","#1F2FA8","#141C66"];
+const rampBounds = [1,2,3,5,9,14];
+const rampLabels = ["1","2","3\u20134","5\u20138","9\u201313","14\u201320"];
+function ramp(count){ let i = 0; for(let k=0;k<rampBounds.length;k++){ if(count >= rampBounds[k]) i = k; } return rampColors[i]; }
 const gdpRampColors = ["#BFE3FF","#8FD0FF","#5BBBFF","#2FA8FF","#1F6FD6","#1F38BC"];
 function rampFor(value, min, max, colors){
   const frac = (Math.max(min, Math.min(value, max)) - min) / (max - min);
@@ -323,6 +325,9 @@ function render(){
     const label = byTopoName[d.properties.name];
     const el = d3.select(this);
     el.classed("excluded", false).classed("no-data", false).style("fill", null);
+    let tip = label || d.properties.name;
+    if(label && mode !== "gdp" && mode !== "pisa" && BUCKETS[label]){ const q = qualifyingGroups(label); tip = label + ": " + q.qualifying.length + " of " + q.reliable.length + " profiles qualify"; }
+    el.select("title").text(tip);
     if(!label){ el.classed("no-data", true); return; }
     const c = colorFor(label);
     if(c.fill === "excluded") el.classed("excluded", true);
@@ -337,10 +342,10 @@ function renderLegend(){
     const higherLabel = mode === "gdp" ? "Higher GDP per capita" : "Higher PISA score";
     l.innerHTML = `<span><span class="swatch" style="background:${gdpRampColors[gdpRampColors.length-1]}"></span>${higherLabel}</span>
       <span><span class="swatch" style="background:#B9C0DC"></span>Below the bar</span>
-      <span><span class="swatch" style="background:#E4E8F4"></span>No data</span>`;
+      <span><span class="swatch" style="background:#EDEBE6"></span>No data</span>`;
   } else {
-    l.innerHTML = `<span><span class="swatch" style="background:${rampColors[rampColors.length-1]}"></span>More profiles qualify</span>
-      <span><span class="swatch" style="background:#E4E8F4"></span>No qualifying profiles / no data</span>`;
+    l.innerHTML = `<span>Profiles that qualify:</span>` + rampColors.map((c,i)=>`<span><span class="swatch" style="background:${c}"></span>${rampLabels[i]}</span>`).join("") +
+      `<span><span class="swatch" style="background:#EDEBE6"></span>None / no data</span>`;
   }
 }
 function showPanel(label){
@@ -444,7 +449,6 @@ document.querySelectorAll(".modes button").forEach(btn=>{
     document.getElementById("panel-body").textContent = (mode === "gdp" || mode === "pisa")
       ? "Click any country to see its figure and whether it clears the bar."
       : "Click any country to see which of its immigrant profiles pass the current bar.";
-    if(countrySel) countrySel.select("title").text(d=> currentTopoIndex()[d.properties.name] || d.properties.name);
   });
 });
 </script>
