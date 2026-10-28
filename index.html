@@ -18,9 +18,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <style>
   :root{
-    --paper:#EFE9DC; --paper-2:#E4DCC8; --ink:#20242B; --ink-soft:#4A4E55;
-    --line:#CFC6AE; --brass:#93711F; --brass-dim:#B79A55;
-    --good:#2F6F4F; --good-dim:#DCE8DE; --bad:#9C3B3B; --muted:#7A7568;
+    --paper:#FFFFFF; --paper-2:#E8ECFC; --ink:#20222E; --ink-soft:#4A4E55;
+    --line:#D3DAF5; --brass:#2C48DC; --brass-dim:#6F86E8;
+    --good:#2C48DC; --good-dim:#DDE4FB; --bad:#E60049; --muted:#6B7088;
   }
   *{box-sizing:border-box;}
   body{ margin:0; background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans',sans-serif; -webkit-font-smoothing:antialiased; }
@@ -37,7 +37,7 @@
   .explainer-top h2{ font-family:'Source Serif 4',serif; font-size:24px; margin:0 0 12px; }
   .explainer-top p{ font-size:15px; line-height:1.65; color:var(--ink); margin:0 0 14px; }
   .explainer-top p:last-child{ margin-bottom:0; }
-  .explainer-top p.disclaimer{ font-size:13.5px; color:var(--ink-soft); background:var(--paper-2); border-left:3px solid var(--brass); padding:10px 14px; }
+  .explainer-top p.disclaimer{ font-size:13.5px; color:var(--ink-soft); background:var(--paper-2); border-left:3px solid #FF8000; padding:10px 14px; }
 
   .mode-groups{ display:flex; gap:28px; flex-wrap:wrap; margin-bottom:22px; }
   .mode-group-label{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.12em; color:var(--brass); margin-bottom:6px; }
@@ -60,15 +60,15 @@
   @media (max-width:720px){ .bench,.control-note{ padding-left:0; } }
   .layout{ display:flex; gap:22px; align-items:flex-start; flex-wrap:wrap; }
   #map-wrap{ flex:1 1 640px; min-width:320px; }
-  #map{ width:100%; border:1px solid var(--line); background:#E9E2D0; }
+  #map{ width:100%; border:1px solid var(--line); background:#EEF1FC; }
   #map path.country{ cursor:pointer; stroke:rgba(32,36,43,0.35); stroke-width:0.5px; }
   #map path.country:hover{ stroke:var(--ink); stroke-width:1.2px; }
-  #map path.country.excluded{ fill:#D8D2C2; }
-  #map path.country.no-data{ fill:#E9E2D0; }
+  #map path.country.excluded{ fill:#CBD2EC; }
+  #map path.country.no-data{ fill:#EEF1FC; }
   .legend{ display:flex; gap:18px; font-size:12px; color:var(--ink-soft); margin-top:10px; flex-wrap:wrap; }
   .legend span{ display:inline-flex; align-items:center; gap:5px; }
   .swatch{ width:11px; height:11px; display:inline-block; border:1px solid rgba(0,0,0,0.15); }
-  #panel{ flex:0 0 300px; min-width:280px; border:1.5px solid var(--ink); background:#F7F3E9; padding:18px 18px 20px; min-height:420px; }
+  #panel{ flex:0 0 300px; min-width:280px; border:1.5px solid var(--ink); background:#FFFFFF; padding:18px 18px 20px; min-height:420px; }
   #panel h3{ font-family:'Source Serif 4',serif; font-size:20px; margin:0 0 4px; }
   #panel .sub{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:14px; }
   #panel .placeholder{ font-size:13px; color:var(--muted); line-height:1.6; }
@@ -282,9 +282,9 @@ function qualifyingGroups(country){
   else qualifying = reliable.filter(r=> r.crime !== null && r.crime <= crimeMax);
   return { reliable, qualifying };
 }
-const rampColors = ["#E4DCC8","#CBDAC9","#A9C6A8","#7FAD82","#569163","#2F6F4F"];
+const rampColors = ["#E8ECFC","#C5CEF6","#9DADF0","#6F86E8","#4A63E0","#2C48DC"];
 function ramp(count){ const i = Math.min(rampColors.length-1, Math.floor((count/TOTAL_GROUPS)*rampColors.length)); return rampColors[Math.max(0,i)]; }
-const gdpRampColors = ["#EFE7C9","#E3D69E","#CBBE72","#B0A24F","#8F8536","#6E6A22"];
+const gdpRampColors = ["#E6F4FF","#BFE3FF","#8FD0FF","#5BBBFF","#2FA8FF","#1F38BC"];
 function rampFor(value, min, max, colors){
   const frac = (Math.max(min, Math.min(value, max)) - min) / (max - min);
   return colors[Math.max(0, Math.min(colors.length-1, Math.floor(frac * colors.length)))];
@@ -327,11 +327,11 @@ function renderLegend(){
   if(mode === "gdp" || mode === "pisa"){
     const higherLabel = mode === "gdp" ? "Higher GDP per capita" : "Higher PISA score";
     l.innerHTML = `<span><span class="swatch" style="background:${gdpRampColors[gdpRampColors.length-1]}"></span>${higherLabel}</span>
-      <span><span class="swatch" style="background:#D8D2C2"></span>Below the bar</span>
-      <span><span class="swatch" style="background:#E9E2D0"></span>No data</span>`;
+      <span><span class="swatch" style="background:#CBD2EC"></span>Below the bar</span>
+      <span><span class="swatch" style="background:#EEF1FC"></span>No data</span>`;
   } else {
     l.innerHTML = `<span><span class="swatch" style="background:${rampColors[rampColors.length-1]}"></span>More profiles qualify</span>
-      <span><span class="swatch" style="background:#E9E2D0"></span>No qualifying profiles / no data</span>`;
+      <span><span class="swatch" style="background:#EEF1FC"></span>No qualifying profiles / no data</span>`;
   }
 }
 
