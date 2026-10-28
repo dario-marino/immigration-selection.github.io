@@ -45,6 +45,19 @@
   .scroll{ max-height:70vh; overflow:auto; border:1.5px solid var(--ink); }
   thead th{ border-bottom:1.5px solid var(--ink); }
   .sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+  /* ---- Higher-contrast variant (MI palette) ---- */
+  body{ background:#E8ECFC; }
+  header.masthead{ background:#1F38BC; border-bottom:4px solid #FF8000; }
+  header.masthead .title{ color:#FFFFFF; }
+  header.masthead .kicker{ color:#BFE3FF; }
+  header.masthead nav a{ color:#E8ECFC; border-bottom-color:#6F86E8; }
+  header.masthead nav a:hover{ color:#FFFFFF; border-color:#FFFFFF; }
+  .disclaimer{ background:#FFF1E0; border-left:4px solid #FF8000; color:#20222E; }
+  .toolbar input[type=text]{ border:2px solid #2C48DC; }
+  .scroll{ border:2px solid #2C48DC; background:#FFFFFF; }
+  thead th{ background:#1F38BC; color:#FFFFFF; border-bottom:2px solid #FF8000; }
+  thead th:hover{ background:#2C48DC; }
+  tbody tr:nth-child(even){ background:#EEF1FC; }
 </style>
 </head>
 <body>
@@ -88,11 +101,9 @@
 <script>
 let DATA = [];
 let sortKey = "country", sortAsc = true;
-
 function fmt(v){ return v===null || v===undefined ? "\u2014" : v; }
 function fmtMoney(v){ return v===null||v===undefined ? "\u2014" : "$"+Math.round(v).toLocaleString(); }
 function fmtPct(v){ return v===null||v===undefined ? "\u2014" : v+"%"; }
-
 function render(){
   const q = document.getElementById("filter").value.trim().toLowerCase();
   const reliableOnly = document.getElementById("reliable-only").checked;
@@ -122,13 +133,11 @@ function render(){
   });
   tbody.innerHTML = "";
   tbody.appendChild(frag);
-
   document.querySelectorAll("thead th").forEach(th=>{
     th.classList.toggle("sorted", th.dataset.key===sortKey);
     th.classList.toggle("asc", th.dataset.key===sortKey && sortAsc);
   });
 }
-
 document.querySelectorAll("thead th").forEach(th=>{
   th.addEventListener("click", ()=>{
     const key = th.dataset.key;
@@ -139,7 +148,6 @@ document.querySelectorAll("thead th").forEach(th=>{
 });
 document.getElementById("filter").addEventListener("input", render);
 document.getElementById("reliable-only").addEventListener("change", render);
-
 fetch("data/full_list.json").then(r=>r.json()).then(data=>{
   DATA = data;
   render();
