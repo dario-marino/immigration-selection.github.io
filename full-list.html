@@ -29,6 +29,7 @@
   }
   .toolbar label{ display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink-soft); }
   .count{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); margin-bottom:10px; }
+  .disclaimer{ font-size:13.5px; color:var(--ink-soft); background:var(--paper-2); border-left:3px solid var(--brass); padding:10px 14px; margin:0 0 16px; }
   table{ width:100%; border-collapse:collapse; font-size:13px; background:#F7F3E9; border:1px solid var(--line); }
   thead th{
     position:sticky; top:0; background:var(--ink); color:var(--paper);
@@ -56,6 +57,7 @@
 </header>
 <main>
   <h2 class="sr-only">Full table of every sex, country of birth, education, and age-at-arrival bucket</h2>
+  <p class="disclaimer"><b>Not a policy proposal.</b> This table supports a tool for testing different screening criteria and seeing how each one changes the size and composition of the eligible immigrant pool.</p>
   <div class="toolbar">
     <input type="text" id="filter" placeholder="Filter by country, sex, or education&hellip;">
     <label><input type="checkbox" id="reliable-only"> Reliable groups only (n &ge; 30)</label>

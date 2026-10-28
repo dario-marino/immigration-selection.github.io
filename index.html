@@ -37,6 +37,7 @@
   .explainer-top h2{ font-family:'Source Serif 4',serif; font-size:24px; margin:0 0 12px; }
   .explainer-top p{ font-size:15px; line-height:1.65; color:var(--ink); margin:0 0 14px; }
   .explainer-top p:last-child{ margin-bottom:0; }
+  .explainer-top p.disclaimer{ font-size:13.5px; color:var(--ink-soft); background:var(--paper-2); border-left:3px solid var(--brass); padding:10px 14px; }
 
   .mode-groups{ display:flex; gap:28px; flex-wrap:wrap; margin-bottom:22px; }
   .mode-group-label{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.12em; color:var(--brass); margin-bottom:6px; }
@@ -108,6 +109,7 @@
 
   <section class="explainer-top" id="explainer">
     <h2>What this tool shows</h2>
+      <p class="disclaimer"><b>Not a policy proposal.</b> This tool lets readers test different screening criteria and see how each one changes the size and composition of the eligible immigrant pool.</p>
     <p>Every immigration system makes a choice about who gets in. This tool lets you try out different rules and see which immigrants would qualify under each one.</p>
     <p>It uses data on more than one million immigrants who live in the United States today, drawn from the Census Bureau&rsquo;s American Community Survey. We split each country&rsquo;s immigrants into <b>profiles</b> based on sex, education (five levels, from less than high school to a graduate degree), and age when they arrived in the US (before 30, or at 30 or older). For example, one profile is &ldquo;Italian women with a bachelor&rsquo;s degree who arrived before age 30.&rdquo; Each country has up to 20 profiles.</p>
     <p>There are two kinds of screens. <b>Home-country screens</b> (GDP per capita and PISA test scores) describe the country itself. <b>US-outcome screens</b> (income, institutionalization, and English) describe how people from that country are actually doing <i>after arriving in the United States</i>, not conditions back home. When you set a bar, the map shades each country by how many of its profiles clear it, and clicking a country shows exactly which profiles pass.</p>
